@@ -1,2 +1,2 @@
 QA-Automation-Framework-Template
- день111
+ день110
