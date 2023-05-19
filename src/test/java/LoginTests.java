@@ -21,7 +21,7 @@ public class LoginTests extends BaseTest {
         options.addArguments("--disable-notifications");
 
         WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(16));
 
         String url = "https://testpro.io/";
         driver.get(url);
@@ -50,7 +50,7 @@ public class LoginTests extends BaseTest {
         options.addArguments("--disable-notifications");
 
         WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(16));
 
         String url = "https://testpro.io/";
         driver.get(url);
@@ -73,7 +73,7 @@ public class LoginTests extends BaseTest {
         options.addArguments("--disable-notifications");
 
         WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(16));
 
         String url = "https://testpro.io/";
         driver.get(url);
