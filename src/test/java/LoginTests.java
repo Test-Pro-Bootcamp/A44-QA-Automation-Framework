@@ -21,9 +21,9 @@ public class LoginTests extends BaseTest {
         options.addArguments("--disable-notifications");
 
         WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(16));
 
-        String url = "https://bbb.testpro.io/";
+        String url = "https://testpro.io/";
         driver.get(url);
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
         emailInput.click();
@@ -50,9 +50,9 @@ public class LoginTests extends BaseTest {
         options.addArguments("--disable-notifications");
 
         WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(16));
 
-        String url = "https://bbb.testpro.io/";
+        String url = "https://testpro.io/";
         driver.get(url);
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
         emailInput.click();
@@ -73,9 +73,9 @@ public class LoginTests extends BaseTest {
         options.addArguments("--disable-notifications");
 
         WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(16));
 
-        String url = "https://bbb.testpro.io/";
+        String url = "https://testpro.io/";
         driver.get(url);
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
         emailInput.click();
