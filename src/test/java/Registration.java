@@ -5,8 +5,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-
 
 public class Registration extends BaseTest {
 
@@ -17,14 +15,17 @@ public class Registration extends BaseTest {
         options.addArguments("--disable-notifications");
 
         WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(17));
 
         String url = "https://bbb.testpro.io/";
         driver.get(url);
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(17));
         WebElement registrationButton = driver.findElement(By.cssSelector("[id='hel']"));
         registrationButton.click();
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(17));
         WebElement registerButton = driver.findElement(By.cssSelector("[id='button']"));
         registerButton.click();
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(17));
 
 
         //registerButton.click();
