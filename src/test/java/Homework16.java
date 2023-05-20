@@ -10,7 +10,7 @@ import java.time.Duration;
 
 public class Homework16 extends BaseTest{
     @Test
-    public static void LoginTest() {
+    public static void loginTest() {
 //      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
