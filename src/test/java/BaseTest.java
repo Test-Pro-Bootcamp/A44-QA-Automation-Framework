@@ -1,6 +1,8 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -59,6 +61,54 @@ public class BaseTest {
         emailInput.click();
         emailInput.clear();
         emailInput.sendKeys(email);
+    }
+    public void searchSong(String song) {
+        WebElement searchInput = driver.findElement(By.cssSelector("[type='search']"));
+        searchInput.click();
+        searchInput.clear();
+        searchInput.sendKeys(song);
+       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    }
+
+    public void clickViewAllBtn() {
+        JavascriptExecutor js= (JavascriptExecutor)driver;
+        WebElement viewAllBtn = driver.findElement(By.cssSelector("button[data-test='view-all-songs-btn']"));
+        js.executeScript("arguments[0].click();",viewAllBtn);
+
+    }
+
+    public void clickFirstSong() {
+        WebElement searchSong = driver.findElement(By.cssSelector("[class='song-list-wrap main-scroll-wrap search-results'] .items"));
+        searchSong.click();
+    }
+
+    public void waitCommand() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    }
+
+    public void clickAddToBtn() {
+        JavascriptExecutor js= (JavascriptExecutor)driver;
+        WebElement addToBtn = driver.findElement(By.cssSelector(".btn-add-to"));
+        js.executeScript("arguments[0].click();",addToBtn);
+
+    }
+
+    public void playlistNameInput(String playlistName) {
+        WebElement nameInput = driver.findElement(By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']"));
+        nameInput.click();
+        nameInput.clear();
+        nameInput.sendKeys(playlistName);
+    }
+
+    public void clickSave() {
+        JavascriptExecutor js= (JavascriptExecutor)driver;
+        WebElement saveBtn = driver.findElement(By.cssSelector("[id='songResultsWrapper'] [type='submit']"));
+        js.executeScript("arguments[0].click();",saveBtn);
+
+        WebElement successBunner = driver.findElement(By.cssSelector("[class='success show']"));
+        Assert.assertTrue(successBunner.isDisplayed());
+
+
     }
 }
 

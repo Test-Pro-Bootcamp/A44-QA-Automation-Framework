@@ -11,6 +11,18 @@ public class Homework17 extends BaseTest{
         enterPassword("te$t$tudent");
         clickLoginBtn();
 
+        searchSong("Pluto");
+        waitCommand();
+        clickViewAllBtn();
+        clickFirstSong();
+        waitCommand();
+        clickAddToBtn();
+        playlistNameInput("Practice");
+        clickSave();
+
+
+
+
     }
 
 }
