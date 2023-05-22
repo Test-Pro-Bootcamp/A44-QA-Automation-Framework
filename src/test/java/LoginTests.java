@@ -38,6 +38,7 @@ public class LoginTests extends BaseTest {
         clickLoginBtn();
         WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
         Assert.assertTrue(submitLogin.isDisplayed());
+
     }
 
 
