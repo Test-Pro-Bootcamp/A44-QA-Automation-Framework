@@ -12,6 +12,7 @@ public class Homework17 extends BaseTest {
         enterEmail("demo@class.com");
         enterPassword("te$t$tudent");
         clickLoginBtn();
+        enterToSearch("Epic song");
         //click View All button results
         WebElement viewAllBtn = driver.findElement(By.cssSelector("[data-test='view-all-songs-btn']"));
         viewAllBtn.click();
