@@ -2,6 +2,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -21,6 +22,7 @@ public class BaseTest {
     static void setupDriver() {
         WebDriverManager.chromedriver().setup();
     }
+
     @BeforeMethod
 
     public void setUpBrowser() {
@@ -107,8 +109,25 @@ public class BaseTest {
 
         WebElement successBanner = driver.findElement(By.cssSelector("[class='success show']"));
         Assert.assertTrue(successBanner.isDisplayed());
+    }
+    public void login(String email, String password) {
+        openUrl();
+        enterEmail(email);
+        enterPassword(password);
+        clickLoginBtn();
+    }
 
+    public void clickPlayBtn() {
+        WebElement playBtn = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+        new Actions(driver)
+                .moveToElement(playBtn)
+                .perform();
+        playBtn.click();
+    }
 
+    public void assertPauseBtn() {
+        WebElement pauseBtn = driver.findElement(By.cssSelector("[data-testid='pause-btn']"));
+        Assert.assertTrue(pauseBtn.isDisplayed());
     }
 }
 
