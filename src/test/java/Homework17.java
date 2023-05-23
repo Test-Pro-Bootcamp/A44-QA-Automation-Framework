@@ -20,9 +20,6 @@ public class Homework17 extends BaseTest{
         playlistNameInput("Practice");
         clickSave();
 
-
-
-
     }
 
 }

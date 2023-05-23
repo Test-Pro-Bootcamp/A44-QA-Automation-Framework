@@ -17,13 +17,11 @@ import java.time.Duration;
 public class BaseTest {
     static WebDriver driver;
 
-
     @BeforeSuite
-    static void setupDriver(){
-            WebDriverManager.chromedriver().setup();
-        }
-
-        @BeforeMethod
+    static void setupDriver() {
+        WebDriverManager.chromedriver().setup();
+    }
+    @BeforeMethod
 
     public void setUpBrowser() {
         ChromeOptions options = new ChromeOptions();
@@ -32,9 +30,10 @@ public class BaseTest {
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        }
+    }
+
     @AfterMethod(alwaysRun = true)
-    public void tearDown(){
+    public void tearDown() {
         driver.quit();
     }
 
@@ -62,18 +61,19 @@ public class BaseTest {
         emailInput.clear();
         emailInput.sendKeys(email);
     }
+
     public void searchSong(String song) {
         WebElement searchInput = driver.findElement(By.cssSelector("[type='search']"));
         searchInput.click();
         searchInput.clear();
         searchInput.sendKeys(song);
-       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     public void clickViewAllBtn() {
-        JavascriptExecutor js= (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement viewAllBtn = driver.findElement(By.cssSelector("button[data-test='view-all-songs-btn']"));
-        js.executeScript("arguments[0].click();",viewAllBtn);
+        js.executeScript("arguments[0].click();", viewAllBtn);
 
     }
 
@@ -87,9 +87,9 @@ public class BaseTest {
     }
 
     public void clickAddToBtn() {
-        JavascriptExecutor js= (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement addToBtn = driver.findElement(By.cssSelector(".btn-add-to"));
-        js.executeScript("arguments[0].click();",addToBtn);
+        js.executeScript("arguments[0].click();", addToBtn);
 
     }
 
@@ -101,12 +101,12 @@ public class BaseTest {
     }
 
     public void clickSave() {
-        JavascriptExecutor js= (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement saveBtn = driver.findElement(By.cssSelector("[id='songResultsWrapper'] [type='submit']"));
-        js.executeScript("arguments[0].click();",saveBtn);
+        js.executeScript("arguments[0].click();", saveBtn);
 
-        WebElement successBunner = driver.findElement(By.cssSelector("[class='success show']"));
-        Assert.assertTrue(successBunner.isDisplayed());
+        WebElement successBanner = driver.findElement(By.cssSelector("[class='success show']"));
+        Assert.assertTrue(successBanner.isDisplayed());
 
 
     }
