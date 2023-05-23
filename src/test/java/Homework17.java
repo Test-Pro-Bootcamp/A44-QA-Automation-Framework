@@ -17,10 +17,10 @@ public class Homework17 extends BaseTest {
         WebElement viewAllBtn = driver.findElement(By.cssSelector("[data-test='view-all-songs-btn']"));
         viewAllBtn.click();
         //click first song from list
-        List<WebElement> songsInResults = driver.findElements(By.cssSelector(".search-results.items [draggable='true']:nth-of-type(1)"));
+        List<WebElement> songsInResults = driver.findElements(By.cssSelector(".search-results .items"));
         songsInResults.get(0).click();
         // click Add To button
-        WebElement addToBtn = driver.findElement(By.cssSelector("[title='Add selected songs to…']"));
+        WebElement addToBtn = driver.findElement(By.cssSelector(".btn-add-to"));
         addToBtn.click();
         //Creation of new playlist with selected song
         WebElement playlistNameFld = driver.findElement(By.cssSelector("#songResultsWrapper [required]"));
