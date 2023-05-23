@@ -3,7 +3,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 public class Homework17 extends BaseTest {
     @Test
-    public void addSongToPlaylist() throws InterruptedException {
+    public void addSongToPlaylist() throws InterruptedException   {
         openUrl();
         enterEmail("demo@class.com");
         enterPassword("te$t$tudent");
@@ -17,12 +17,13 @@ public class Homework17 extends BaseTest {
         addToBtn.click();
         WebElement playlistNameFld = driver.findElement(By.cssSelector("#songResultsWrapper [required]"));
         playlistNameFld.click();
-        playlistNameFld.sendKeys("Great Music");
+        playlistNameFld.sendKeys("Great Music_777");
         WebElement savePlaylistBtn = driver.findElement(By.cssSelector("#songResultsWrapper [type='submit']"));
-        
+        savePlaylistBtn.click();
+
 
     }
-       public void enterToSearch (String song) {
+       public void enterToSearch (String song) throws InterruptedException {
            WebElement searchLine = driver.findElement(By.cssSelector("[name='q']"));
            searchLine.click();
            searchLine.clear();
