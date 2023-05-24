@@ -4,10 +4,18 @@
 <suite name="TestNG">
 
     <test name="Example Test" preserve-order="false">
-        <classes>
-            <class name="LoginTests"/>
-            <class name="ProfileTests"/>
-            <class name="SongsTests"/>
-        </classes>
+    <classes>
+
+
+
+
+
+
+
+
+
+             </classes>
+
+
     </test>
 </suite>
