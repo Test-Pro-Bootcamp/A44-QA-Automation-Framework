@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
@@ -20,7 +21,7 @@ public class Registration extends BaseTest {
         WebElement registrationButton = driver.findElement(By.cssSelector("[id='hel']"));
         registrationButton.click();
         WebElement registerButton = driver.findElement(By.cssSelector("[id='button']"));
-        registerButton.click();
+        Assert.assertTrue(registerButton.isDisplayed());
         driver.quit();
     }
 }
