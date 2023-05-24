@@ -18,7 +18,6 @@ import java.time.Duration;
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notification*");
 
-
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         String url = "https://bbb.testpro.io/";
