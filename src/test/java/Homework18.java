@@ -19,11 +19,9 @@ public void playSongTest() throws InterruptedException {
                 .moveToElement(hoverable)
                 .perform();
         hoverable.click();
-//        Thread.sleep(5000);
 
         WebElement buttonPause = driver.findElement(By.cssSelector("span[data-testid='pause-btn']"));
         Assert.assertTrue(buttonPause.isDisplayed());
-//        Thread.sleep(5000);
     }
 
 }
