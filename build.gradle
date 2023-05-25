@@ -19,7 +19,7 @@ dependencies {
 
 test {
     useTestNG() {
-        suites "src/test/resources/TestNG.xml"
+        suites "src/test/resources/Player.xml"
     }
 }
 
@@ -33,5 +33,11 @@ task smoke(type: Test) {
     useTestNG() {
         suites "src/test/resources/Smoke.xml"
        // includeGroups 'ProfileTests'
+    }
+}
+task player(type: Test) {
+    useTestNG() {
+        suites "src/test/resources/Player.xml"
+        // includeGroups 'ProfileTests'
     }
 }
