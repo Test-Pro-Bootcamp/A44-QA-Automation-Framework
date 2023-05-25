@@ -34,3 +34,9 @@ task smoke(type: Test) {
        // includeGroups 'ProfileTests'
     }
 }
+task player(type: Test) {
+    useTestNG() {
+        suites "src/test/resources/Player.xml"
+        // includeGroups 'ProfileTests'
+    }
+}
