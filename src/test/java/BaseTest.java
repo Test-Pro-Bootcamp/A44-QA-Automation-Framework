@@ -26,9 +26,8 @@ public class BaseTest {
     }
 
     @BeforeMethod
-//    @Parameters({"BaseURL"})
-  //  public void setUpBrowser(String BaseURL){
-        public void setUpBrowser(){
+    @Parameters({"BaseURL"})
+    public void setUpBrowser(String BaseURL) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
@@ -41,17 +40,17 @@ public class BaseTest {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown(){
+    public void tearDown() {
         driver.quit();
     }
 
-    public String generateRandomName(){
+    public String generateRandomName() {
         Faker faker = new Faker(new Locale("en-US"));
         String newName = faker.name().firstName();
         return newName;
     }
 
-    public String generateRandomPlaylistName(){
+    public String generateRandomPlaylistName() {
         Faker faker = new Faker(new Locale("en-US"));
         String newName = faker.address().country();
         return newName;
@@ -81,7 +80,7 @@ public class BaseTest {
     }
 
 
-    public void login(String email, String password){
+    public void login(String email, String password) {
         enterEmail(email);
         enterPassword(password);
         clickLoginBtn();
@@ -94,13 +93,13 @@ public class BaseTest {
         searchInput.sendKeys(text);
     }
 
-    public String getSongName(){
+    public String getSongName() {
         WebElement songName = driver.findElement(By.cssSelector("#playlistWrapper .song-item .title"));
         String songText = songName.getText();
         return songText;
     }
 
-    public boolean isBannerDisplayed(){
+    public boolean isBannerDisplayed() {
         WebElement successBanner = driver.findElement(By.cssSelector(".success"));
         return successBanner.isDisplayed();
     }
