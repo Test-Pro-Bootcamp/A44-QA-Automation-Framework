@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeSuite;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.Parameters;
 
 
 import java.time.Duration;
@@ -24,14 +25,17 @@ public class BaseTest {
     }
 
     @BeforeMethod
+    @Parameters({"BaseURL"})
 
-    public void setUpBrowser() {
+    public void setUpBrowser(String BaseURL) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        String url=BaseURL;
+        openUrl(url);
     }
 
     @AfterMethod(alwaysRun = true)
@@ -40,8 +44,7 @@ public class BaseTest {
     }
 
 
-    public void openUrl() {
-        String url = "https://bbb.testpro.io/";
+    public void openUrl(String url) {
         driver.get(url);
     }
 
@@ -111,7 +114,7 @@ public class BaseTest {
         Assert.assertTrue(successBanner.isDisplayed());
     }
     public void login(String email, String password) {
-        openUrl();
+        //openUrl();
         enterEmail(email);
         enterPassword(password);
         clickLoginBtn();
@@ -128,6 +131,28 @@ public class BaseTest {
     public void assertPauseBtn() {
         WebElement pauseBtn = driver.findElement(By.cssSelector("[data-testid='pause-btn']"));
         Assert.assertTrue(pauseBtn.isDisplayed());
+    }
+
+    public void showSuccessBanner() {
+        WebElement successBanner = driver.findElement(By.cssSelector("[class='success show']"));
+        Assert.assertTrue(successBanner.isDisplayed());
+    }
+
+    public void clickOkBtn() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement okBtn = driver.findElement(By.cssSelector(".ok"));
+        js.executeScript("arguments[0].click();", okBtn);
+    }
+
+    public void deleteSelectedPlaylist() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement deletePlaylistBtn = driver.findElement(By.cssSelector("[title='Delete this playlist']"));
+        js.executeScript("arguments[0].click();", deletePlaylistBtn);
+    }
+
+    public void clickPlaylist() {
+        WebElement playlist = driver.findElement(By.cssSelector("[class='playlist playlist']"));
+        playlist.click();
     }
 }
 
