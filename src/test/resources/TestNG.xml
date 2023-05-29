@@ -10,6 +10,7 @@
             <class name="SongsTests"/>
             <class name="CSVDataProviderTest"/>
             <class name="PlaylistTests"/>
+            <class name="Homework20"/>
         </classes>
     </test>
 </suite>
