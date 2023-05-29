@@ -8,7 +8,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -28,9 +30,9 @@ public class BaseTest {
     }
 
     @BeforeMethod
-//    @Parameters({"BaseURL"})
-  //  public void setUpBrowser(String BaseURL){
-        public void setUpBrowser(){
+   @Parameters({"BaseURL"})
+   public void setUpBrowser(String BaseURL){
+
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
@@ -41,7 +43,9 @@ public class BaseTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         String url = "https://bbb.testpro.io/";
-        openUrl(url);
+        driver.get(url);
+
+
     }
 
     @AfterMethod(alwaysRun = true)
