@@ -9,7 +9,7 @@ public class Homework17 extends BaseTest {
 
     public void addSongToPlaylist() throws InterruptedException {
 
-        openUrl();
+//        openUrl();
         enterEmail("andrei.bryliakov01@testpro.io");
         enterPassword("te$t$tudent");
         clickLoginBtn();

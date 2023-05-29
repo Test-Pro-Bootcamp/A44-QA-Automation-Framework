@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 
@@ -22,17 +23,18 @@ public class BaseTest {
 
 
     @BeforeMethod
-    public void setUpBrowser(){
+    @Parameters({"BaseURL"})
+    public void setUpBrowser(String BaseURL){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notification*");
         options.addArguments("--start-maximized");
 
-
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        String url = BaseURL;
+        openUrl(url);
     }
-
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(){
@@ -40,8 +42,7 @@ public class BaseTest {
     }
 
 
-    public void openUrl() {
-        String url = "https://bbb.testpro.io/";
+    public void openUrl(String url) {
         driver.get(url);
     }
 
@@ -61,7 +62,6 @@ public class BaseTest {
 //        passwordInput.sendKeys("te$t$tudent");
 
     }
-
     protected void clickLoginBtn() {
         WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
         submitLogin.click();

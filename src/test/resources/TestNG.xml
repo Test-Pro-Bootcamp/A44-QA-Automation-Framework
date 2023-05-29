@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TestNG">
-
+    <parameter name="BaseURL" value="https://bbb.testpro.io/"></parameter>
     <test name="Example Test" preserve-order="false">
         <classes>
             <class name="LoginTests"/>
@@ -14,6 +14,7 @@
                     <include name="playSongTest"/>
                 </methods>
             </class>
+            <class name="Homework19"/>
         </classes>
     </test>
 </suite>

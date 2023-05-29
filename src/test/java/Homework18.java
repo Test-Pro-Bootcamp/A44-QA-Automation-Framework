@@ -9,7 +9,7 @@ public class Homework18 extends BaseTest{
     @Test
 public void playSongTest() throws InterruptedException {
 
-     openUrl();
+//     openUrl();
      enterEmail("andrei.bryliakov01@testpro.io");
      enterPassword("te$t$tudent");
      clickLoginBtn();
