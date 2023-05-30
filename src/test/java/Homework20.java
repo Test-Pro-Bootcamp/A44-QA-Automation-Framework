@@ -1,24 +1,25 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Homework20 extends  BaseTest {
 
     @Test
 
-    public void deletePlaylist() throws InterruptedException {
-
+    public void searchSong() {
+     //  GIVEN
         openUrl();
         enterEmail("andrei.bryliakov01@testpro.io");
         enterPassword("te$t$tudent");
         clickLoginBtn();
-
+     //  WHEN
         WebElement searchInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='search']")));
         searchInput.click();
         searchInput.clear();
         searchInput.sendKeys("pluto");
-
+     //  THEN
         WebElement submitView = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-test='view-all-songs-btn']")));
         submitView.click();
     }
