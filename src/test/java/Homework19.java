@@ -9,7 +9,7 @@ public class Homework19 extends BaseTest{
 
     public void deletePlaylist(){
 
-//        openUrl();
+        openUrl();
         enterEmail("andrei.bryliakov01@testpro.io");
         enterPassword("te$t$tudent");
         clickLoginBtn();
