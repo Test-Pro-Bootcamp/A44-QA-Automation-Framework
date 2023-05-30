@@ -1,22 +1,27 @@
+
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
 
 import java.time.Duration;
+import java.util.Locale;
+
 
 
 public class BaseTest {
     static WebDriver driver;
+    WebDriverWait wait;
 
     @BeforeSuite
     static void setupDriver() {
@@ -31,7 +36,9 @@ public class BaseTest {
         options.addArguments("--disable-notifications");
 
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        //driver.manage().deleteAllCookies();
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     @AfterMethod(alwaysRun = true)
@@ -46,35 +53,40 @@ public class BaseTest {
     }
 
     public void clickLoginBtn() {
-        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
+        WebElement submitLogin = wait.until(ExpectedConditions
+                .elementToBeClickable(By.cssSelector("button[type='submit']")));
         submitLogin.click();
     }
 
     public void enterPassword(String password) {
-        WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
+        WebElement passwordInput = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("[type='password']")));
         passwordInput.click();
         passwordInput.clear();
         passwordInput.sendKeys(password);
     }
 
     public void enterEmail(String email) {
-        WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
+        WebElement emailInput = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("[type='email']")));
         emailInput.click();
         emailInput.clear();
         emailInput.sendKeys(email);
     }
 
     public void searchSong(String song) {
-        WebElement searchInput = driver.findElement(By.cssSelector("[type='search']"));
+        WebElement searchInput = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("[type='search']")));
         searchInput.click();
         searchInput.clear();
         searchInput.sendKeys(song);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     public void clickViewAllBtn() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement viewAllBtn = driver.findElement(By.cssSelector("button[data-test='view-all-songs-btn']"));
+        WebElement viewAllBtn = wait.until(ExpectedConditions
+                .elementToBeClickable(By.cssSelector("button[data-test='view-all-songs-btn']")));
         js.executeScript("arguments[0].click();", viewAllBtn);
 
     }
@@ -96,7 +108,8 @@ public class BaseTest {
     }
 
     public void playlistNameInput(String playlistName) {
-        WebElement nameInput = driver.findElement(By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']"));
+        WebElement nameInput = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']")));
         nameInput.click();
         nameInput.clear();
         nameInput.sendKeys(playlistName);
@@ -104,12 +117,15 @@ public class BaseTest {
 
     public void clickSave() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement saveBtn = driver.findElement(By.cssSelector("[id='songResultsWrapper'] [type='submit']"));
+        WebElement saveBtn = wait.until(ExpectedConditions
+                .elementToBeClickable(By.cssSelector("[id='songResultsWrapper'] [type='submit']")));
         js.executeScript("arguments[0].click();", saveBtn);
 
-        WebElement successBanner = driver.findElement(By.cssSelector("[class='success show']"));
+        WebElement successBanner = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("[class='success show']")));
         Assert.assertTrue(successBanner.isDisplayed());
     }
+
     public void login(String email, String password) {
         openUrl();
         enterEmail(email);
@@ -128,8 +144,6 @@ public class BaseTest {
     public void assertPauseBtn() {
         WebElement pauseBtn = driver.findElement(By.cssSelector("[data-testid='pause-btn']"));
         Assert.assertTrue(pauseBtn.isDisplayed());
-    }
+            }
+
 }
-
-
-
