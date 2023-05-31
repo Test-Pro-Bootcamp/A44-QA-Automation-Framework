@@ -8,9 +8,19 @@
             <class name="LoginTests"/>
             <class name="ProfileTests"/>
             <class name="SongsTests"/>
+            <class name="Homework17"/>
+            <class name="Homework19"/>
+            <class name="Homework20"/>
+            <class name="Homework21"/>
             <class name="CSVDataProviderTest"/>
+
+
             <class name="PlaylistTests"/>
+
+
+
             <class name="ActionsTests"/>
+
         </classes>
     </test>
 </suite>
