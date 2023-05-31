@@ -43,7 +43,7 @@ public class PlaylistTests extends BaseTest {
         // verify banner
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".success")));
         // refresh page
-        driver.navigate().refresh();
+         driver.navigate().refresh();
         // get all playlist elements
         List<WebElement> playlists = driver.findElements(By.cssSelector("#playlists a"));
         // get playlist names from playlist elements

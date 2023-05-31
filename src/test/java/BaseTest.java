@@ -37,7 +37,7 @@ public class BaseTest {
         options.addArguments("--start-maximized");
 
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         String url = "https://bbb.testpro.io/";
@@ -123,9 +123,9 @@ public class BaseTest {
         newPlaylistNameInput.click();
         newPlaylistNameInput.clear();
         newPlaylistNameInput.sendKeys(playlistName);
-        newPlaylistNameInput.click();
-        newPlaylistNameInput.clear();
-        newPlaylistNameInput.sendKeys(playlistName);
+      //  newPlaylistNameInput.click();
+        //newPlaylistNameInput.clear();
+     //   newPlaylistNameInput.sendKeys(playlistName);
         // click Enter
         new Actions(driver)
                 .keyDown(Keys.ENTER)
