@@ -31,8 +31,6 @@ public class DragAndDropExample {
         WebElement to = driver.findElement(By.id("column-b"));
 
         new Actions(driver).dragAndDrop(from, to).perform();
-
-        Thread.sleep(3000);
         String textTo = to.getText();
         if(textTo.equals("A")) {
             System.out.println("PASS: Square is dropped to target as expected");
