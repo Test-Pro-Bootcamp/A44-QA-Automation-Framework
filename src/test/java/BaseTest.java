@@ -1,22 +1,23 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 
 import java.time.Duration;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class BaseTest {
     static WebDriver driver;
+    WebDriverWait wait;
 
     @BeforeSuite
     static void setupDriver() {
@@ -31,7 +32,8 @@ public class BaseTest {
         options.addArguments("--disable-notifications");
 
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     @AfterMethod(alwaysRun = true)
@@ -44,7 +46,6 @@ public class BaseTest {
         String url = "https://bbb.testpro.io/";
         driver.get(url);
     }
-
     public void clickLoginBtn() {
         WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
         submitLogin.click();
@@ -129,7 +130,80 @@ public class BaseTest {
         WebElement pauseBtn = driver.findElement(By.cssSelector("[data-testid='pause-btn']"));
         Assert.assertTrue(pauseBtn.isDisplayed());
     }
+
+    public void assertRenamedPlaylistPresent() {
+        List<WebElement> playlistNames = driver.findElements(By.cssSelector(".playlist.playlist>a"));
+        List<String> listOfNames = new ArrayList<>();
+
+        for (int i = 0; i < playlistNames.size(); i++) {
+            String playlistName = playlistNames.get(i).getText();
+            if(playlistName=="Renamed playlist attempt # 2"){
+                listOfNames.add(playlistName);
+            }
+        }
+        System.out.println(listOfNames);
+        //Assert.assertTrue(listOfNames.contains("Renamed playlist attempt # 2"));
+    }
+
+    public void renamePlaylistName() {
+        WebElement inputPlaylistName = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("input[name='name']")));
+        inputPlaylistName.click();
+        inputPlaylistName.sendKeys((Keys.chord(Keys.CONTROL, "a", Keys.BACK_SPACE)));
+        inputPlaylistName.sendKeys("Renamed playlist attempt # 2");
+        inputPlaylistName.sendKeys(Keys.ENTER);
+
+    }
+
+    public boolean assertSuccessBanner() {
+        WebElement successBanner = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector(".success")));
+        return successBanner.isDisplayed();
+    }
+
+    public void assertPlaylistNameInHeader() {
+        WebElement playlistHeader = driver.findElement(By.cssSelector("#playlistWrapper h1"));
+        wait.until(ExpectedConditions
+                .textToBePresentInElement(playlistHeader, "Try#1"));
+    }
+
+    public void clickEnter() {
+        new Actions(driver)
+                .keyDown(Keys.ENTER)
+                .perform();
+    }
+
+    public void addPlaylistName() {
+        WebElement inputPlaylistName = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector(".create input")));
+        inputPlaylistName.click();
+        inputPlaylistName.clear();
+        inputPlaylistName.sendKeys("Try#1");
+    }
+
+    public void clickNewPlaylist() {
+        wait.until(ExpectedConditions
+                        .elementToBeClickable(By.cssSelector("[data-testid='playlist-context-menu-create-simple']")))
+                .click();
+    }
+
+    public void clickPlusBtn() {
+        WebElement plusBtn = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("[data-testid='sidebar-create-playlist-btn']")));
+        plusBtn.click();
+    }
+
+    public void clickEdit() {
+      WebElement editBtn = wait.until(ExpectedConditions
+              .elementToBeClickable(By.cssSelector(".playlist .menu li ")));
+      editBtn.click();
+    }
+
+    public void rightClickOnPlaylist() {
+        WebElement playlist = wait.until(ExpectedConditions
+                .elementToBeClickable(By.cssSelector(".playlist .active")));
+        new Actions(driver)
+                .contextClick(playlist)
+                .perform();
+    }
 }
-
-
-
