@@ -15,11 +15,11 @@
 
 
             <class name="PlaylistTests"/>
-<<<<<<< HEAD
 
-=======
+
+
             <class name="ActionsTests"/>
->>>>>>> 158631c4cd86af22197e8885c335c475e1615cd1
+
         </classes>
     </test>
 </suite>

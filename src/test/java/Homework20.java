@@ -12,12 +12,62 @@ import java.util.List;
 public class Homework20 extends BaseTest {
 
     @Test
-    public void deletePlaylist() throws InterruptedException {
+    public void deletePlaylist() {
         login("vicplach123@gmail.com", "MEGAdelta06@");
         String playlistName = generateRandomPlaylistName();
 
         //create playlist before deleting it
+        createPlaylistBeforeDeleting(playlistName);
 
+        checkPlaylistCreation(playlistName);
+
+        //delete playlist
+        deletingPlaylist();
+
+        System.out.println("OK");
+        // refresh page
+        driver.navigate().refresh();
+
+       deletingConfirmation(playlistName);
+
+
+    }
+
+    private void deletingConfirmation(String playlistName) {
+        List<WebElement> PlayLists = driver.findElements(By.cssSelector("#playlists a"));
+        List<String> PlaylistNames = new ArrayList<>();
+        //playlist deleting check
+
+        for (int i = 0; i < PlayLists.size(); i++) {
+            String PlaylistName = PlayLists.get(i).getText();
+            PlaylistNames.add(PlaylistName);
+
+        }
+        System.out.println(PlaylistNames);
+        Assert.assertFalse(PlaylistNames.contains(playlistName));
+
+    }
+
+    private void deletingPlaylist() {
+        WebElement playlistDelete = wait.until(ExpectedConditions
+                .elementToBeClickable(By.cssSelector(".btn-delete-playlist")));
+        playlistDelete.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".success")));
+
+    }
+
+    private void checkPlaylistCreation(String playlistName) {
+        // playlist appearance confirmation
+        WebElement newPlaylistConfirm = driver.findElement(By.cssSelector("section#playlistWrapper h1"));
+
+        wait.until(ExpectedConditions.textToBePresentInElement(newPlaylistConfirm, playlistName));
+        // check the playlist creation
+        System.out.println(newPlaylistConfirm.getText());
+        Assert.assertEquals(newPlaylistConfirm.getText(), playlistName);
+
+    }
+
+    private void createPlaylistBeforeDeleting(String playlistName) {
         WebElement plusPlaylistbtn = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.cssSelector("[title='Create a new playlist']")));
         plusPlaylistbtn.click();
@@ -33,37 +83,7 @@ public class Homework20 extends BaseTest {
         new Actions(driver)
                 .keyDown(Keys.ENTER)
                 .perform();
-       // Thread.sleep(300);
-        // playlist appearance confirmation
-        WebElement newPlaylistConfirm = driver.findElement(By.cssSelector("section#playlistWrapper h1"));
 
-        wait.until(ExpectedConditions.textToBePresentInElement(newPlaylistConfirm, playlistName));
-        // check the playlist creation
-        System.out.println(newPlaylistConfirm.getText());
-        Assert.assertEquals(newPlaylistConfirm.getText(), playlistName);
-        //delete playlist
-        WebElement playlistDelete = wait.until(ExpectedConditions
-                .elementToBeClickable(By.cssSelector(".btn-delete-playlist")));
-        playlistDelete.click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".success")));
-
-        System.out.println("OK");
-        // refresh page
-        driver.navigate().refresh();
-
-        //Thread.sleep(1000);
-
-        List<WebElement> PlayLists = driver.findElements(By.cssSelector("#playlists a"));
-        List<String> PlaylistNames = new ArrayList<>();
-        //playlist deleting check
-
-        for (int i = 0; i < PlayLists.size(); i++) {
-            String PlaylistName = PlayLists.get(i).getText();
-            PlaylistNames.add(PlaylistName);
-
-        }
-        System.out.println(PlaylistNames);
-        Assert.assertFalse(PlaylistNames.contains(playlistName));
     }
 
 
