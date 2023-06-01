@@ -15,9 +15,27 @@ public class Homework21 extends BaseTest {
         Assert.assertTrue(isEditBtnAppeared());
         clickEditBtnOfContextMenu();
         enterNewPlaylistName();
+        Assert.assertTrue(isUpdatedBannerAppeared());
+        isPlaylistNameChanged();
+        Assert.assertEquals(getPlaylistName(), "Excellent songs");
 
 
     }
+
+    public String getPlaylistName() {
+        WebElement playlist = driver.findElement(By.cssSelector("[href='#!/playlist/59529']"));
+        String playlistName = playlist.getText();
+        return playlistName;
+    }
+
+    private void isPlaylistNameChanged() {
+    }
+
+    public boolean isUpdatedBannerAppeared() {
+        WebElement updatedBanner = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='success show']")));
+        return updatedBanner.isDisplayed();
+    }
+
 
     private void enterNewPlaylistName() {
 
