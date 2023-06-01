@@ -16,7 +16,6 @@ public class Homework21 extends BaseTest {
         clickEditBtnOfContextMenu();
         enterNewPlaylistName();
         Assert.assertTrue(isUpdatedBannerAppeared());
-        isPlaylistNameChanged();
         Assert.assertEquals(getPlaylistName(), "Excellent songs");
 
 
@@ -28,8 +27,7 @@ public class Homework21 extends BaseTest {
         return playlistName;
     }
 
-    private void isPlaylistNameChanged() {
-    }
+
 
     public boolean isUpdatedBannerAppeared() {
         WebElement updatedBanner = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='success show']")));
