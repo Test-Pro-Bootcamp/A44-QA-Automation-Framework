@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,7 +9,7 @@ import org.testng.annotations.Test;
 public class Homework21 extends BaseTest {
     @Test
     public void renamePlaylistByContextMenu() {
-       // String newPlaylistName = "Excellent songs";
+
         login("demo@class.com", "te$t$tudent");
         contextClickPlaylist();
         Assert.assertTrue(isEditBtnAppeared());
@@ -16,17 +17,14 @@ public class Homework21 extends BaseTest {
         enterNewPlaylistName();
 
 
-
-
     }
 
     private void enterNewPlaylistName() {
-        String newPlaylistName = "Fantastic songs";
-        new Actions(driver)
-                .sendKeys(newPlaylistName)
-                .perform();
-        //WebElement playlistToRename = driver.findElement(By.cssSelector("Great Music_777"));
-        //playlistToRename.sendKeys(newPlaylistName);
+
+        String name = "Excellent songs";
+        WebElement playlistToRename = driver.findElement(By.cssSelector("input[name='name']"));
+        playlistToRename.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), name);
+        playlistToRename.sendKeys(Keys.ENTER);
     }
 
     public boolean isEditBtnAppeared() {
