@@ -13,10 +13,20 @@ public class Homework21 extends BaseTest {
         contextClickPlaylist();
         Assert.assertTrue(isEditBtnAppeared());
         clickEditBtnOfContextMenu();
+        enterNewPlaylistName();
 
 
 
 
+    }
+
+    private void enterNewPlaylistName() {
+        String newPlaylistName = "Excellent songs";
+        new Actions(driver)
+                .sendKeys(newPlaylistName)
+                .perform();
+        //WebElement playlistToRename = driver.findElement(By.cssSelector("Great Music_777"));
+        //playlistToRename.sendKeys(newPlaylistName);
     }
 
     public boolean isEditBtnAppeared() {
@@ -29,8 +39,8 @@ public class Homework21 extends BaseTest {
     }
 
     private void contextClickPlaylist() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("Great Music_777")));
-        WebElement playlistToRename = driver.findElement(By.cssSelector("Great Music_777"));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[href='#!/playlist/59529']")));
+        WebElement playlistToRename = driver.findElement(By.cssSelector("[href='#!/playlist/59529']"));
         Actions action = new Actions(driver);
         action.contextClick(playlistToRename).perform();
     }
