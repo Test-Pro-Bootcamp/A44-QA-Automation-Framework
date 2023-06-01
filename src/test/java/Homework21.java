@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class Homework21 extends BaseTest {
     @Test
     public void renamePlaylistByContextMenu() {
-        String newPlaylistName = "Excellent songs";
+       // String newPlaylistName = "Excellent songs";
         login("demo@class.com", "te$t$tudent");
         contextClickPlaylist();
         Assert.assertTrue(isEditBtnAppeared());
@@ -21,7 +21,7 @@ public class Homework21 extends BaseTest {
     }
 
     private void enterNewPlaylistName() {
-        String newPlaylistName = "Excellent songs";
+        String newPlaylistName = "Fantastic songs";
         new Actions(driver)
                 .sendKeys(newPlaylistName)
                 .perform();
