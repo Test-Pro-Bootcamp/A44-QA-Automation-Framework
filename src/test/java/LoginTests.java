@@ -1,25 +1,67 @@
+import Pages.HomePage;
+import Pages.LoginPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
-    @Test
-    public static void LoginEmptyEmailPasswordTest() {
 
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
+    @DataProvider(name = "IncorrectLoginProviders")
+    public static Object[][] getDataFromDataProviders() {
+        return new Object[][]{
+                {"notExisting@email.com", "NotExistingPassword"},
+                {"demo@class.com", ""},
+                {"", ""},
+        };
+    }
 
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
+    @Test(dataProvider = "IncorrectLoginProviders")
+    public void negativeLoginTests(String email, String password) throws InterruptedException {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterEmail(email);
+        loginPage.enterPassword(password);
+        loginPage.clickLoginBtn();
+        // Thread.sleep(3000);
         Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
+    }
+
+    @Test
+    public void loginSucceedTest() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.enterEmail("demo@class.com");
+        loginPage.enterPassword("te$t$tudent");
+        loginPage.clickLoginBtn();
+        // find if avatar exists
+        Assert.assertTrue(homePage.getAvatar().isDisplayed());
+        //Thread.sleep(5000);
+    }
+
+
+    @Test
+    public void loginEmptyPasswordTest() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterEmail("demo@class.com");
+        loginPage.clickLoginBtn();
+
+        Assert.assertTrue(loginPage.submitLogin());
+    }
+
+    @Test
+    public void loginInvalidEmailTest() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterEmail("notexists@class.com");
+        loginPage.enterPassword("te$t$tudent");
+        loginPage.clickLoginBtn();
+
+        Assert.assertTrue(loginPage.submitLogin());
     }
 }
