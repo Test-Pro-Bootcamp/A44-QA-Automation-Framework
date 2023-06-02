@@ -47,6 +47,7 @@ public class BaseTest {
         openUrl(url);
     }
 
+
     @AfterMethod(alwaysRun = true)
     public void tearDown(){
         driver.quit();
