@@ -55,5 +55,17 @@ public class PlaylistPage extends BasePage{
                 .keyDown(Keys.ENTER)
                 .perform();
     }
+    public void contextClickPlaylist() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[href='#!/playlist/59529']")));
+        WebElement playlistToRename = driver.findElement(By.cssSelector("[href='#!/playlist/59529']"));
+        Actions action = new Actions(driver);
+        action.contextClick(playlistToRename).perform();
+    }
+    public WebElement editBtn() {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-testid='playlist-context-menu-edit-59529']")));
 
+    }
+    public void clickEditBtnOfContextMenu() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-testid='playlist-context-menu-edit-59529']"))).click();
+    }
 }
