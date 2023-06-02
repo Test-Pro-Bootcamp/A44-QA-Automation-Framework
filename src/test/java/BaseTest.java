@@ -1,4 +1,5 @@
 
+import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.By;
@@ -52,7 +53,7 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         String url=BaseURL;
         openUrl(url);
 
@@ -78,5 +79,18 @@ public class BaseTest {
         WebElement successBanner = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.cssSelector(".success")));
         return successBanner.isDisplayed();
+    }
+
+    public void assertRenamedPlaylistPresent() {
+        List<WebElement> playlistNames = driver.findElements(By.cssSelector(".playlist.playlist>a"));
+        List<String> listOfNames = new ArrayList<>();
+
+        for (int i = 0; i < playlistNames.size(); i++) {
+            String playlistName = playlistNames.get(i).getText();
+            if (playlistName.equals("Renamed playlist attempt # 2")) {
+                listOfNames.add(playlistName);
+            }
+            System.out.println(listOfNames);
+        }
     }
 }
