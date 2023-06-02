@@ -58,10 +58,10 @@ public class HomePage extends BasePage{
         WebElement addToBtn = driver.findElement(addToButton);
         js.executeScript("arguments[0].click();", addToBtn);
     }
-    public void playlistNameInput(String playlistName) {
+    public void playlistNameInput(String newPlaylist) {
         WebElement nameInput = wait.until(ExpectedConditions.visibilityOfElementLocated(playlistNameField));
         nameInput.click();
         nameInput.clear();
-        nameInput.sendKeys(playlistName);
+        nameInput.sendKeys(newPlaylist);
     }
 }
