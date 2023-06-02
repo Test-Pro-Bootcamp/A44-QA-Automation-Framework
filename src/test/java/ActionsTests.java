@@ -15,7 +15,13 @@ public class ActionsTests extends BaseTest {
     public void playSongTest() {
         LoginPage loginPage = new LoginPage(driver);
         // hover over in clickPlayBtn
-        loginPage.login("demo@class.com", "te$t$tudent");
+
+        loginPage.login("marianna.tysovska@gmail.com", "marysia288940.");
+
+
+
+
+
         clickFooterPlayBtn();
         Assert.assertTrue(pauseBtnExists());
 
@@ -43,7 +49,10 @@ public class ActionsTests extends BaseTest {
         // double click
         String playlistName = "Summer songs";
 
+
         loginPage.login("demo@class.com", "te$t$tudent");
+
+
         doubleClickChoosePlaylist();
         enterPlaylistName(playlistName);
         String newName = getPlaylistName();
@@ -52,8 +61,12 @@ public class ActionsTests extends BaseTest {
 
     @Test
     public void playSongFromListTest() {
+
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("demo@class.com", "te$t$tudent");
+
+
+
         goToAllSongs();
         // right click on first song
         rightClickOnFirstSong();
@@ -122,7 +135,11 @@ public class ActionsTests extends BaseTest {
     public void countSongsInPlaylist() {
         LoginPage loginPage = new LoginPage(driver);
 
+
         loginPage.login("demo@class.com", "te$t$tudent");
+
+
+
         WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(4)")));
         playlist.click();
         List<WebElement> songs = driver.findElements(By.cssSelector("#playlistWrapper .song-item"));
@@ -130,4 +147,6 @@ public class ActionsTests extends BaseTest {
         Assert.assertEquals(number, 1); // can fail, depends on current number. This is just an example
 
     }
-}
+
+        }
+
