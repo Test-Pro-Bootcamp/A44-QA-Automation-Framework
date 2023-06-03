@@ -22,7 +22,7 @@ public class ProfilePage extends BasePage{
     public void assertThemeChanged() {
         WebElement selectedTheme = wait.until(ExpectedConditions.presenceOfElementLocated(themeColor));
         Assert.assertTrue(selectedTheme.isEnabled());
-        System.out.println(selectedTheme.getText());
+        System.out.println("The selected theme is " + selectedTheme.getText());
     }
 
     public void clickRandomTheme() {
