@@ -56,10 +56,6 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         String url=BaseURL;
         openUrl(url);
-
-        //wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        //driver.manage().deleteAllCookies();
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
