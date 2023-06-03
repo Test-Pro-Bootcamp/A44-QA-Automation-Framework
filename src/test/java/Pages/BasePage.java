@@ -11,7 +11,7 @@ import java.time.Duration;
 
 public class BasePage {
     WebDriver driver;
-    WebDriverWait wait;
+    static WebDriverWait wait;
     Actions actions;
 
     public BasePage (WebDriver givenDriver){
@@ -26,5 +26,12 @@ public class BasePage {
     public WebElement waitUntilClickable(By element){
         return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.elementToBeClickable(element));
     }
-
+    public static boolean assertSuccessBanner() {
+        WebElement successBanner = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector(".success")));
+        return successBanner.isDisplayed();
+    }
+    public void refreshPage(){
+        driver.navigate().refresh();
+    }
 }
