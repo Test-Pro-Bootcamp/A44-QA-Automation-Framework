@@ -2,8 +2,6 @@ import Pages.BasePage;
 import Pages.HomePage;
 import Pages.LoginPage;
 import Pages.PlaylistPage;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
