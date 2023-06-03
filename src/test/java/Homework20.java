@@ -1,3 +1,4 @@
+import Pages.BasePage;
 import Pages.LoginPage;
 import Pages.PlaylistPage;
 import org.openqa.selenium.By;
@@ -21,6 +22,7 @@ public class Homework20 extends BaseTest {
     public void deletePlaylist() throws InterruptedException {
         LoginPage loginPage = new LoginPage(driver);
         PlaylistPage playlistPage = new PlaylistPage(driver);
+        BasePage basePage = new BasePage(driver);
         String newPlaylist = playlistPage.generateRandomName();
 
         loginPage.login("stella_26021987@mail.ru", "te$t$tudent");
@@ -31,8 +33,8 @@ public class Homework20 extends BaseTest {
         playlistPage.assertPlaylistNameInHeader(newPlaylist);
 
         playlistPage.clickDeletePlaylistBtn();
-        assertSuccessBanner();
-        driver.navigate().refresh();
+        BasePage.assertSuccessBanner();
+        basePage.refreshPage();
         Thread.sleep(4000);
         playlistPage.assertPlaylistDeleted(newPlaylist);
     }

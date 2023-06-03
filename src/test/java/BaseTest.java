@@ -71,12 +71,6 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    public boolean assertSuccessBanner() {
-        WebElement successBanner = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.cssSelector(".success")));
-        return successBanner.isDisplayed();
-    }
-
     public void assertRenamedPlaylistPresent() {
         List<WebElement> playlistNames = driver.findElements(By.cssSelector(".playlist.playlist>a"));
         List<String> listOfNames = new ArrayList<>();

@@ -1,3 +1,4 @@
+import Pages.BasePage;
 import Pages.LoginPage;
 import Pages.PlaylistPage;
 import org.testng.annotations.Test;
@@ -15,13 +16,12 @@ public class Homework21 extends BaseTest{
         playlistPage.addPlaylistName(newPlaylist);
         playlistPage.clickEnter();
         playlistPage.assertPlaylistNameInHeader(newPlaylist);
-        assertSuccessBanner();
+        BasePage.assertSuccessBanner();
 
         playlistPage.rightClickOnPlaylist();
         playlistPage.clickEdit();
         playlistPage.renamePlaylistName(newPlaylist);
-        assertSuccessBanner();
-        driver.navigate().refresh();
+        BasePage.assertSuccessBanner();
         Thread.sleep(4000);
         playlistPage.assertRenamedPlaylistPresent(newPlaylist);
     }

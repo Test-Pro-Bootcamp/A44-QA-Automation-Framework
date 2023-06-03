@@ -1,3 +1,4 @@
+import Pages.BasePage;
 import Pages.HomePage;
 import Pages.LoginPage;
 import Pages.PlaylistPage;
@@ -33,7 +34,7 @@ public class Homework18 extends BaseTest {
         homePage.clickAddToBtn();
         homePage.playlistNameInput(newPlaylist);
         playlistPage.clickEnter();
-        assertSuccessBanner();
+        BasePage.assertSuccessBanner();
         playlistPage.assertSongAddedToPlaylist();
     }
 }

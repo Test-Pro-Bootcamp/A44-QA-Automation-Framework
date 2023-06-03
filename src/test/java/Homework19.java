@@ -1,3 +1,4 @@
+import Pages.BasePage;
 import Pages.LoginPage;
 import Pages.PlaylistPage;
 import org.testng.annotations.Test;
@@ -14,6 +15,6 @@ public class Homework19 extends BaseTest{
         playlistPage.deleteSelectedPlaylist();
         playlistPage.clickOkBtn();
         waitCommand();
-        assertSuccessBanner();
+        BasePage.assertSuccessBanner();
     }
 }
