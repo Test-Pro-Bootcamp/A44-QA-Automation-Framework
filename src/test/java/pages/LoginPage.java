@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
+
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
     }
@@ -15,9 +16,11 @@ public class LoginPage extends BasePage {
     By submitLoginBtn = By.cssSelector("button[type='submit']");
 
 
-    public void clickLoginBtn() {
-        WebElement submitLogin = driver.findElement(submitLoginBtn);
-        submitLogin.click();
+    public void enterEmail(String email) {
+        WebElement emailInput = wait.until(ExpectedConditions.elementToBeClickable(emailField));
+        emailInput.click();
+        emailInput.clear();
+        emailInput.sendKeys(email);
     }
 
     public void enterPassword(String password) {
@@ -27,11 +30,9 @@ public class LoginPage extends BasePage {
         passwordInput.sendKeys(password);
     }
 
-    public void enterEmail(String email) {
-        WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(emailField));
-        emailInput.click();
-        emailInput.clear();
-        emailInput.sendKeys(email);
+    public void clickLoginBtn() {
+        WebElement submitLogin = wait.until(ExpectedConditions.elementToBeClickable(submitLoginBtn));
+        submitLogin.click();
     }
 
     public void login(String email, String password){
@@ -39,5 +40,7 @@ public class LoginPage extends BasePage {
         enterPassword(password);
         clickLoginBtn();
     }
+
+
 
 }
