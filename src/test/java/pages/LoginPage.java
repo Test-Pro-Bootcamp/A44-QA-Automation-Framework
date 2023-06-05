@@ -25,7 +25,7 @@ public class LoginPage extends BasePage {
 
 
     public void clickLoginBtn() {
-        WebElement submitLogin = driver.findElement(submitLoginBtn);
+        WebElement submitLogin = wait.until(ExpectedConditions.elementToBeClickable(submitLoginBtn));
         submitLogin.click();
     }
 
