@@ -16,6 +16,8 @@ public class PlaylistPage extends BasePage{
         super(givenDriver);
     }
 
+
+
     @FindBy(css = "[data-testid='sidebar-create-playlist-btn']")
     WebElement plusBtn;
     //By plusBtn = By.cssSelector("[data-testid='sidebar-create-playlist-btn']");
@@ -32,8 +34,8 @@ public class PlaylistPage extends BasePage{
     WebElement plNameInput;
     //By plNameInput = By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']");
 
-    @FindBy(css = "[href='#!/playlist/playlistNumber']")
-    WebElement playlist;
+    @FindBy(css = "[href='#!/playlist/59529']")
+        WebElement playlist;
     //By playlist59529 = By.cssSelector("[href='#!/playlist/59529']");
 
     @FindBy(css = "[data-testid='playlist-context-menu-edit-59529']")
@@ -85,7 +87,6 @@ public class PlaylistPage extends BasePage{
     }
 
     public void contextClickPlaylist() {
-        wait.until(ExpectedConditions.elementToBeClickable(playlist));
         WebElement playlistToRename = wait.until(ExpectedConditions.elementToBeClickable(playlist));
         Actions action = new Actions(driver);
         action.contextClick(playlistToRename).perform();
