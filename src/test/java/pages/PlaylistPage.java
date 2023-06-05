@@ -45,7 +45,7 @@ public class PlaylistPage extends BasePage{
     //By inputPlaylistName = By.cssSelector("input[name=
 
     @FindBy(css = "[class='success show']")
-    WebElement updatedBanner;
+    WebElement updatedBannerSelector;
     //By updatedBanner = By.cssSelector("[class='success show']");
 
     public void createNewPlaylistWhileAddingSong(String playlistName) {
@@ -105,7 +105,7 @@ public class PlaylistPage extends BasePage{
         playlistToRename.sendKeys(Keys.ENTER);
     }
     public WebElement updatedBanner() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated((By) updatedBanner));
+         return wait.until(ExpectedConditions.presenceOfElementLocated((By) updatedBannerSelector));
 
     }
     public String getPlaylistName() {

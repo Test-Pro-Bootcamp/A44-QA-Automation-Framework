@@ -1,9 +1,9 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage{
     public HomePage(WebDriver givenDriver) {
@@ -15,8 +15,8 @@ public class HomePage extends BasePage{
     //By avatar = By.cssSelector(".avatar");
 
 
-    public boolean getAvatar(){
-        return driver.findElement(avatar).isDisplayed();
+    public WebElement getAvatar(){
+        return wait.until(ExpectedConditions.visibilityOf(avatar));
     }
 
 }
