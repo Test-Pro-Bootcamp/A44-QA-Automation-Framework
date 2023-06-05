@@ -1,3 +1,5 @@
+import Page.HomePage;
+import Page.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -9,7 +11,7 @@ public class Homework17 extends BaseTest {
 
     public void addSongToPlaylist() throws InterruptedException {
 
-        openUrl();
+     //   openUrl(url);
         enterEmail("andrei.bryliakov01@testpro.io");
         enterPassword("te$t$tudent");
         clickLoginBtn();
@@ -41,6 +43,28 @@ public class Homework17 extends BaseTest {
         Assert.assertTrue(createdPlaylist.isDisplayed());
 
     }
+    @Test
+    public void loginSucceedTest() {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        loginPage.enterEmail("andrei.bryliakov01@testpro.io");
+        loginPage.enterPassword("te$t$tudent");
+        loginPage.clickLoginBtn();
+
+        homePage.getAvatar();
+
+        WebElement avatar = driver.findElement(By.cssSelector(".avatar"));
+        Assert.assertTrue(avatar.isDisplayed());
+
+    }
+//    @Test
+//    public void loginEmptyPaswordTest(){
+//        enterEmail("andrei.bryliakov01@testpro.io");
+//        clickLoginBtn();
+//        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
+//        Assert.assertTrue(submitLogin.isDisplayed());
+//
+//    }
 
 }
 

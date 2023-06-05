@@ -13,7 +13,7 @@ public class Homework21 extends BaseTest{
 
     public void renamePlaylist(){
   //  GIVEN
-    openUrl();
+    openUrl(url);
     enterEmail("andrei.bryliakov01@testpro.io");
     enterPassword("te$t$tudent");
     clickLoginBtn();

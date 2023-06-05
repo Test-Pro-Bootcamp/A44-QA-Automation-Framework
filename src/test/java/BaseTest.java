@@ -14,8 +14,12 @@ import org.testng.annotations.BeforeSuite;
 import java.time.Duration;
 
 public class BaseTest {
-    static WebDriver driver;
-     WebDriverWait wait;
+    public static WebDriver driver = null;
+
+    public static String url = "https://bbb.testpro.io/";
+     public static WebDriverWait wait = null;
+
+
     @BeforeSuite
     static void setupDriver() {
         WebDriverManager.chromedriver().setup();}
@@ -28,8 +32,10 @@ public class BaseTest {
         options.addArguments("--start-maximized");
 
         driver = new ChromeDriver(options);
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        openUrl(url);
 
     }
     @AfterMethod(alwaysRun = true)
@@ -37,8 +43,7 @@ public class BaseTest {
         driver.quit();
     }
 
-    public void openUrl() {
-        String url = "https://bbb.testpro.io/";
+   public void openUrl(String url) {
         driver.get(url);
     }
     public void enterEmail(String email) {
@@ -64,6 +69,11 @@ public class BaseTest {
        // WebElement avatar = driver.findElement(By.cssSelector(".avatar"));
         WebElement avatar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".avatar")));
         Assert.assertTrue(avatar.isDisplayed());
+    }
+    public void login(String email, String password){
+        enterEmail(email);
+        enterPassword(password);
+        clickLoginBtn();
     }
 
 }

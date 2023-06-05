@@ -19,8 +19,8 @@ public class Homework16 extends BaseTest {
 
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
+//        String url = "https://bbb.testpro.io/";
+//        driver.get(url);
 
 
 
@@ -30,7 +30,7 @@ public class Homework16 extends BaseTest {
         WebElement post = driver.findElement(By.cssSelector("[method='POST']"));
         Assert.assertTrue(post.isDisplayed());
         driver.quit();
-
-
     }
+
+
 }
