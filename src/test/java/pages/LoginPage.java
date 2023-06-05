@@ -20,7 +20,7 @@ public class LoginPage extends BasePage {
     //By passwordField = By.cssSelector("[type='password']");
 
     @FindBy(css = "button[type='submit']")
-            WebElement submitLoginBtn;
+    WebElement submitLoginBtn;
     //By submitLoginBtn = By.cssSelector("button[type='submit']");
 
 
