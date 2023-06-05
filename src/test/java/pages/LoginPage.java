@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,7 +36,7 @@ public class LoginPage extends BasePage {
     }
 
     public void enterEmail(String email) {
-        WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(emailField));
+        WebElement emailInput = wait.until(ExpectedConditions.elementToBeClickable(emailField));
         emailInput.click();
         emailInput.clear();
         emailInput.sendKeys(email);
