@@ -49,7 +49,7 @@ public class PlaylistPage extends BasePage{
     //By updatedBanner = By.cssSelector("[class='success show']");
 
     public void createNewPlaylistWhileAddingSong(String playlistName) {
-        WebElement newPlaylistNameInput = driver.findElement(plNameInput);
+        WebElement newPlaylistNameInput = wait.until(ExpectedConditions.elementToBeClickable(plNameInput));
         newPlaylistNameInput.click();
         newPlaylistNameInput.clear();
         newPlaylistNameInput.sendKeys(playlistName);
@@ -85,8 +85,8 @@ public class PlaylistPage extends BasePage{
     }
 
     public void contextClickPlaylist() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(playlist59529));
-        WebElement playlistToRename = driver.findElement(playlist59529);
+        wait.until(ExpectedConditions.elementToBeClickable(playlist));
+        WebElement playlistToRename = wait.until(ExpectedConditions.elementToBeClickable(playlist));
         Actions action = new Actions(driver);
         action.contextClick(playlistToRename).perform();
     }
@@ -109,8 +109,8 @@ public class PlaylistPage extends BasePage{
 
     }
     public String getPlaylistName() {
-        WebElement playlist = driver.findElement(playlist59529);
-        String playlistName = playlist.getText();
+        WebElement playList = wait.until(ExpectedConditions.elementToBeClickable(playlist));
+        String playlistName = playList.getText();
         return playlistName;
     }
 
