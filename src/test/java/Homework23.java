@@ -4,7 +4,7 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.PlaylistPage;
 
-public class Homework22 extends BaseTest {
+public class Homework23 extends BaseTest {
 
     @Test
     public void renamePlaylistByContextMenu() {
