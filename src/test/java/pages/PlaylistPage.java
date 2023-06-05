@@ -90,6 +90,7 @@ public class PlaylistPage extends BasePage{
         WebElement playlistToRename = wait.until(ExpectedConditions.elementToBeClickable(playlist));
         Actions action = new Actions(driver);
         action.contextClick(playlistToRename).perform();
+
     }
     public WebElement editBtn() {
         return wait.until(ExpectedConditions.elementToBeClickable(editBtn));
