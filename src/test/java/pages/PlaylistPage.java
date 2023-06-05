@@ -19,6 +19,10 @@ public class PlaylistPage extends BasePage{
     By createNewPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
     By playlistNameInput = By.cssSelector(".create input");
     By plNameInput = By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']");
+    By playlist59529 = By.cssSelector("[href='#!/playlist/59529']");
+    By editBtn = By.cssSelector("[data-testid='playlist-context-menu-edit-59529']");
+    By inputPlaylistName = By.cssSelector("input[name='name']");
+    By updatedBanner = By.cssSelector("[class='success show']");
 
     public void createNewPlaylistWhileAddingSong(String playlistName) {
         WebElement newPlaylistNameInput = driver.findElement(plNameInput);
