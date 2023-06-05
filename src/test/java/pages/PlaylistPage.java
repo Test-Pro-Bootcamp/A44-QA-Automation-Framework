@@ -56,6 +56,36 @@ public class PlaylistPage extends BasePage{
                 .perform();
     }
 
+    public void contextClickPlaylist() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(playlist59529));
+        WebElement playlistToRename = driver.findElement(playlist59529);
+        Actions action = new Actions(driver);
+        action.contextClick(playlistToRename).perform();
+    }
+    public WebElement editBtn() {
+        return wait.until(ExpectedConditions.elementToBeClickable(editBtn));
+
+    }
+    public void clickEditBtnOfContextMenu() {
+        wait.until(ExpectedConditions.elementToBeClickable(editBtn)).click();
+    }
+    public void enterNewPlaylistName() {
+
+        String name = "Excellent songs";
+        WebElement playlistToRename = driver.findElement(inputPlaylistName);
+        playlistToRename.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), name);
+        playlistToRename.sendKeys(Keys.ENTER);
+    }
+    public WebElement updatedBanner() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(updatedBanner));
+
+    }
+    public String getPlaylistName() {
+        WebElement playlist = driver.findElement(playlist59529);
+        String playlistName = playlist.getText();
+        return playlistName;
+    }
+
 
 
 }
