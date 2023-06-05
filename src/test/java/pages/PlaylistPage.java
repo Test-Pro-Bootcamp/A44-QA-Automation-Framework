@@ -6,6 +6,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.Locale;
@@ -15,14 +16,37 @@ public class PlaylistPage extends BasePage{
         super(givenDriver);
     }
 
-    By plusBtn = By.cssSelector("[data-testid='sidebar-create-playlist-btn']");
-    By createNewPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
-    By playlistNameInput = By.cssSelector(".create input");
-    By plNameInput = By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']");
-    By playlist59529 = By.cssSelector("[href='#!/playlist/59529']");
-    By editBtn = By.cssSelector("[data-testid='playlist-context-menu-edit-59529']");
-    By inputPlaylistName = By.cssSelector("input[name='name']");
-    By updatedBanner = By.cssSelector("[class='success show']");
+    @FindBy(css = "[data-testid='sidebar-create-playlist-btn']")
+    WebElement plusBtn;
+    //By plusBtn = By.cssSelector("[data-testid='sidebar-create-playlist-btn']");
+
+    @FindBy(css = "[data-testid='playlist-context-menu-create-simple']")
+    WebElement createNewPlaylist;
+    //By createNewPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
+
+    @FindBy(css = ".create input")
+    WebElement playlistNameInput;
+    //By playlistNameInput = By.cssSelector(".create input");
+
+    @FindBy(css = "[id='songResultsWrapper'] [placeholder='Playlist name']")
+    WebElement plNameInput;
+    //By plNameInput = By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']");
+
+    @FindBy(css = "[href='#!/playlist/playlistNumber']")
+    WebElement playlist;
+    //By playlist59529 = By.cssSelector("[href='#!/playlist/59529']");
+
+    @FindBy(css = "[data-testid='playlist-context-menu-edit-59529']")
+    WebElement editBtn;
+    //By editBtn = By.cssSelector("[data-testid='playlist-context-menu-edit-59529']");
+
+    @FindBy(css = "input[name='name']")
+    WebElement inputPlaylistName;
+    //By inputPlaylistName = By.cssSelector("input[name=
+
+    @FindBy(css = "[class='success show']")
+    WebElement updatedBanner;
+    //By updatedBanner = By.cssSelector("[class='success show']");
 
     public void createNewPlaylistWhileAddingSong(String playlistName) {
         WebElement newPlaylistNameInput = driver.findElement(plNameInput);

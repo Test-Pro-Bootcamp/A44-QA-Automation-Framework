@@ -14,6 +14,7 @@ public class Homework23 extends BaseTest {
         PlaylistPage playlistPage = new PlaylistPage(driver);
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = new LoginPage(driver);
+        String playlistNumber = "59529";
 
         loginPage.login("demo@class.com", "te$t$tudent");
         playlistPage.contextClickPlaylist();
