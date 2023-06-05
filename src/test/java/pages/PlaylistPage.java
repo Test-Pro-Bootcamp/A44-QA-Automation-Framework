@@ -69,12 +69,12 @@ public class PlaylistPage extends BasePage{
     }
 
     public void createNewPlaylistUsingPlusBtn(String playlistName) {
-        WebElement plusButton = wait.until(ExpectedConditions.visibilityOfElementLocated(plusBtn));
+        WebElement plusButton = wait.until(ExpectedConditions.elementToBeClickable(plusBtn));
         plusButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(createNewPlaylist)).click();
         // Add playlist name
         WebElement inputPlaylistName = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(playlistNameInput));
+                .elementToBeClickable(playlistNameInput));
         inputPlaylistName.click();
         inputPlaylistName.clear();
         inputPlaylistName.sendKeys(playlistName);
@@ -100,12 +100,12 @@ public class PlaylistPage extends BasePage{
     public void enterNewPlaylistName() {
 
         String name = "Excellent songs";
-        WebElement playlistToRename = driver.findElement(inputPlaylistName);
+        WebElement playlistToRename = wait.until(ExpectedConditions.elementToBeClickable(inputPlaylistName));
         playlistToRename.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), name);
         playlistToRename.sendKeys(Keys.ENTER);
     }
     public WebElement updatedBanner() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(updatedBanner));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated((By) updatedBanner));
 
     }
     public String getPlaylistName() {
