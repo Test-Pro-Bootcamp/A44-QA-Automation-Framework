@@ -32,9 +32,14 @@ public class BaseTest {
     }
 
     @BeforeMethod
-//    @Parameters({"BaseURL"})
-  //  public void setUpBrowser(String BaseURL){
-        public void setUpBrowser(){
+
+    @Parameters({"BaseURL"})
+    public void setUpBrowser(String BaseURL){
+
+
+
+
+
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
