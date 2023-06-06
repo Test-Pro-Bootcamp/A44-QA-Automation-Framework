@@ -1,7 +1,6 @@
 package pages;
 
 import com.github.javafaker.Faker;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,7 +34,7 @@ public class PlaylistPage extends BasePage{
     //By plNameInput = By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']");
 
     @FindBy(css = "[href='#!/playlist/59529']")
-        WebElement playlist;
+        WebElement playlist59529;
     //By playlist59529 = By.cssSelector("[href='#!/playlist/59529']");
 
     @FindBy(css = "[data-testid='playlist-context-menu-edit-59529']")
@@ -87,17 +86,17 @@ public class PlaylistPage extends BasePage{
     }
 
     public void contextClickPlaylist() {
-        WebElement playlistToRename = wait.until(ExpectedConditions.elementToBeClickable(playlist));
+        wait.until(ExpectedConditions.elementToBeClickable(playlist59529));
+        WebElement playlistToRename = wait.until(ExpectedConditions.elementToBeClickable(playlist59529));
         Actions action = new Actions(driver);
         action.contextClick(playlistToRename).perform();
-
     }
     public WebElement editBtn() {
         return wait.until(ExpectedConditions.elementToBeClickable(editBtn));
 
     }
     public void clickEditBtnOfContextMenu() {
-        wait.until(ExpectedConditions.elementToBeClickable(editBtn)).click();
+       wait.until(ExpectedConditions.elementToBeClickable(editBtn)).click();
     }
     public void enterNewPlaylistName() {
 
@@ -107,12 +106,12 @@ public class PlaylistPage extends BasePage{
         playlistToRename.sendKeys(Keys.ENTER);
     }
     public WebElement updatedBanner() {
-         return wait.until(ExpectedConditions.presenceOfElementLocated((By) updatedBannerSelector));
+        return wait.until(ExpectedConditions.visibilityOf(updatedBannerSelector));
 
     }
     public String getPlaylistName() {
-        WebElement playList = wait.until(ExpectedConditions.elementToBeClickable(playlist));
-        String playlistName = playList.getText();
+        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(playlist59529));
+        String playlistName = playlist.getText();
         return playlistName;
     }
 
