@@ -37,13 +37,20 @@ public class PlaylistPage extends BasePage {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement deletePlaylistBtn = driver.findElement(deleteBtn);
         js.executeScript("arguments[0].click();", deletePlaylistBtn);
+        if (driver.findElement(By.cssSelector("#playlistWrapper [data-test='btn-shuffle-all']")).isDisplayed()) {
+            //JavascriptExecutor js = (JavascriptExecutor) driver;
+            WebElement okBtn = driver.findElement(btnOk);
+            js.executeScript("arguments[0].click();", okBtn);
+            }
+        else{
+            assertSuccessBanner();
+        }
     }
-
-    public void clickOkBtn() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement okBtn = driver.findElement(btnOk);
-        js.executeScript("arguments[0].click();", okBtn);
-    }
+    //public void clickOkBtn() {
+        //JavascriptExecutor js = (JavascriptExecutor) driver;
+        //WebElement okBtn = driver.findElement(btnOk);
+        //js.executeScript("arguments[0].click();", okBtn);
+    //}
 
     public void clickPlusBtn() {
         WebElement plusBtn = wait.until(ExpectedConditions.elementToBeClickable(btnPlus));
