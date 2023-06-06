@@ -6,8 +6,6 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 
-import java.util.List;
-
 
 public class LoginTests extends BaseTest {
 
@@ -38,7 +36,7 @@ public class LoginTests extends BaseTest {
         loginPage.enterPassword("te$t$tudent");
         loginPage.clickLoginBtn();
         // find if avatar exists
-        Assert.assertTrue(homePage.getAvatar());
+        Assert.assertTrue(homePage.getAvatar().isDisplayed());
     }
 
 

@@ -1,11 +1,11 @@
 package pages;
 
 import com.github.javafaker.Faker;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.Locale;
@@ -15,13 +15,42 @@ public class PlaylistPage extends BasePage{
         super(givenDriver);
     }
 
-    By plusBtn = By.cssSelector("[data-testid='sidebar-create-playlist-btn']");
-    By createNewPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
-    By playlistNameInput = By.cssSelector(".create input");
-    By plNameInput = By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']");
+
+
+    @FindBy(css = "[data-testid='sidebar-create-playlist-btn']")
+    WebElement plusBtn;
+    //By plusBtn = By.cssSelector("[data-testid='sidebar-create-playlist-btn']");
+
+    @FindBy(css = "[data-testid='playlist-context-menu-create-simple']")
+    WebElement createNewPlaylist;
+    //By createNewPlaylist = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
+
+    @FindBy(css = ".create input")
+    WebElement playlistNameInput;
+    //By playlistNameInput = By.cssSelector(".create input");
+
+    @FindBy(css = "[id='songResultsWrapper'] [placeholder='Playlist name']")
+    WebElement plNameInput;
+    //By plNameInput = By.cssSelector("[id='songResultsWrapper'] [placeholder='Playlist name']");
+
+    @FindBy(css = "[href='#!/playlist/59529']")
+        WebElement playlist59529;
+    //By playlist59529 = By.cssSelector("[href='#!/playlist/59529']");
+
+    @FindBy(css = "[data-testid='playlist-context-menu-edit-59529']")
+    WebElement editBtn;
+    //By editBtn = By.cssSelector("[data-testid='playlist-context-menu-edit-59529']");
+
+    @FindBy(css = "input[name='name']")
+    WebElement inputPlaylistName;
+    //By inputPlaylistName = By.cssSelector("input[name=
+
+    @FindBy(css = "[class='success show']")
+    WebElement updatedBannerSelector;
+    //By updatedBanner = By.cssSelector("[class='success show']");
 
     public void createNewPlaylistWhileAddingSong(String playlistName) {
-        WebElement newPlaylistNameInput = driver.findElement(plNameInput);
+        WebElement newPlaylistNameInput = wait.until(ExpectedConditions.elementToBeClickable(plNameInput));
         newPlaylistNameInput.click();
         newPlaylistNameInput.clear();
         newPlaylistNameInput.sendKeys(playlistName);
@@ -41,12 +70,12 @@ public class PlaylistPage extends BasePage{
     }
 
     public void createNewPlaylistUsingPlusBtn(String playlistName) {
-        WebElement plusButton = wait.until(ExpectedConditions.visibilityOfElementLocated(plusBtn));
+        WebElement plusButton = wait.until(ExpectedConditions.elementToBeClickable(plusBtn));
         plusButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(createNewPlaylist)).click();
         // Add playlist name
         WebElement inputPlaylistName = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(playlistNameInput));
+                .elementToBeClickable(playlistNameInput));
         inputPlaylistName.click();
         inputPlaylistName.clear();
         inputPlaylistName.sendKeys(playlistName);
@@ -55,5 +84,37 @@ public class PlaylistPage extends BasePage{
                 .keyDown(Keys.ENTER)
                 .perform();
     }
+
+    public void contextClickPlaylist() {
+        wait.until(ExpectedConditions.elementToBeClickable(playlist59529));
+        WebElement playlistToRename = wait.until(ExpectedConditions.elementToBeClickable(playlist59529));
+        Actions action = new Actions(driver);
+        action.contextClick(playlistToRename).perform();
+    }
+    public WebElement editBtn() {
+        return wait.until(ExpectedConditions.elementToBeClickable(editBtn));
+
+    }
+    public void clickEditBtnOfContextMenu() {
+       wait.until(ExpectedConditions.elementToBeClickable(editBtn)).click();
+    }
+    public void enterNewPlaylistName() {
+
+        String name = "Excellent songs";
+        WebElement playlistToRename = wait.until(ExpectedConditions.elementToBeClickable(inputPlaylistName));
+        playlistToRename.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), name);
+        playlistToRename.sendKeys(Keys.ENTER);
+    }
+    public WebElement updatedBanner() {
+        return wait.until(ExpectedConditions.visibilityOf(updatedBannerSelector));
+
+    }
+    public String getPlaylistName() {
+        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(playlist59529));
+        String playlistName = playlist.getText();
+        return playlistName;
+    }
+
+
 
 }
