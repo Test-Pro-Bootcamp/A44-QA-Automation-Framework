@@ -13,7 +13,6 @@ public class PlaylistPage extends BasePage {
     public PlaylistPage(WebDriver givenDriver) {
         super(givenDriver);
     }
-
     By myPlaylist = By.cssSelector("[class='playlist playlist']");
     By deleteBtn = By.cssSelector("[title='Delete this playlist']");
     By btnOk = By.cssSelector(".ok");
@@ -38,20 +37,10 @@ public class PlaylistPage extends BasePage {
         WebElement deletePlaylistBtn = driver.findElement(deleteBtn);
         js.executeScript("arguments[0].click();", deletePlaylistBtn);
         if (driver.findElement(By.cssSelector("#playlistWrapper [data-test='btn-shuffle-all']")).isDisplayed()) {
-            //JavascriptExecutor js = (JavascriptExecutor) driver;
             WebElement okBtn = driver.findElement(btnOk);
             js.executeScript("arguments[0].click();", okBtn);
             }
-        else{
-            assertSuccessBanner();
-        }
     }
-    //public void clickOkBtn() {
-        //JavascriptExecutor js = (JavascriptExecutor) driver;
-        //WebElement okBtn = driver.findElement(btnOk);
-        //js.executeScript("arguments[0].click();", okBtn);
-    //}
-
     public void clickPlusBtn() {
         WebElement plusBtn = wait.until(ExpectedConditions.elementToBeClickable(btnPlus));
         plusBtn.click();

@@ -72,13 +72,10 @@ public class BaseTest {
                 return driver = new ChromeDriver(options);
         }
     }
-
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         driver.quit();
     }
-
-
     public void openUrl(String url) {
         driver.get(url);
     }

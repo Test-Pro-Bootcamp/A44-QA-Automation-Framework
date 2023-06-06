@@ -13,9 +13,7 @@ public class Homework19 extends BaseTest{
 
         loginPage.login("stella_26021987@mail.ru", "te$t$tudent");
         playlistPage.clickPlaylist();
-        //Thread.sleep(4000);
         playlistPage.deleteSelectedPlaylist();
-        //playlistPage.clickOkBtn();
         waitCommand();
         basePage.assertSuccessBanner();
     }
