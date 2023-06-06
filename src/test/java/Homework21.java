@@ -22,7 +22,8 @@ public class Homework21 extends BaseTest{
         playlistPage.clickEdit();
         playlistPage.renamePlaylistName(newPlaylist);
         BasePage.assertSuccessBanner();
-        Thread.sleep(4000);
+        waitCommand();
+        //Thread.sleep(4000);
         playlistPage.assertRenamedPlaylistPresent(newPlaylist);
     }
 
