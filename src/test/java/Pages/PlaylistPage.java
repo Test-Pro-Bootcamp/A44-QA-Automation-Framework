@@ -26,6 +26,7 @@ public class PlaylistPage extends BasePage {
     By playlistNameEditField = By.cssSelector("input[name='name']");
     By playlist = By.cssSelector(".playlist.playlist>a");
     By newlyCreatedPlaylist = By.cssSelector("#mainWrapper #playlistWrapper");
+    By shuffleBtn = By.cssSelector("#playlistWrapper [data-test='btn-shuffle-all']");
 
     public void clickPlaylist() {
         WebElement playlist = driver.findElement(myPlaylist);
@@ -36,20 +37,21 @@ public class PlaylistPage extends BasePage {
         WebElement deletePlaylistBtn = driver.findElement(deleteBtn);
         js.executeScript("arguments[0].click();", deletePlaylistBtn);
 
-        if (driver.findElement(By.cssSelector("#playlistWrapper [data-test='btn-shuffle-all']")).isDisplayed()) {
-            WebElement okBtn = driver.findElement(btnOk);
-            js.executeScript("arguments[0].click();", okBtn);
-
-            WebElement successBanner = wait.until(ExpectedConditions
-                    .visibilityOfElementLocated(By.cssSelector(".success")));
-            Assert.assertTrue(successBanner.isDisplayed());
+        try {
+            boolean btnPresence = driver.findElement(shuffleBtn).isDisplayed();
+            if (btnPresence == true) {
+                WebElement okBtn = driver.findElement(btnOk);
+                js.executeScript("arguments[0].click();", okBtn);
             }
-        else{
-            WebElement successBanner = wait.until(ExpectedConditions
-                    .visibilityOfElementLocated(By.cssSelector(".success")));
-            Assert.assertTrue(successBanner.isDisplayed());
         }
-    }
+            catch(org.openqa.selenium.NoSuchElementException e){
+            }
+        }
+       // if (driver.findElement(By.cssSelector("#playlistWrapper [data-test='btn-shuffle-all']")).isDisplayed()) {
+           // WebElement okBtn = driver.findElement(btnOk);
+            //js.executeScript("arguments[0].click();", okBtn);
+            //}
+
     public void clickPlusBtn() {
         WebElement plusBtn = wait.until(ExpectedConditions.elementToBeClickable(btnPlus));
         plusBtn.click();

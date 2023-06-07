@@ -12,6 +12,7 @@ public class Homework21 extends BaseTest{
 
         loginPage.login("stella_26021987@mail.ru", "te$t$tudent");
         playlistPage.clickPlusBtn();
+        Thread.sleep(1000);
         playlistPage.clickNewPlaylist();
         playlistPage.addPlaylistName(newPlaylist);
         playlistPage.clickEnter();
@@ -22,7 +23,7 @@ public class Homework21 extends BaseTest{
         playlistPage.clickEdit();
         playlistPage.renamePlaylistName(newPlaylist);
         BasePage.assertSuccessBanner();
-        Thread.sleep(4000);
+        Thread.sleep(1000);
         playlistPage.assertRenamedPlaylistPresent(newPlaylist);
     }
 

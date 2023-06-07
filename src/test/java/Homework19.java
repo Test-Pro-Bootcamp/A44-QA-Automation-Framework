@@ -15,6 +15,6 @@ public class Homework19 extends BaseTest{
         playlistPage.clickPlaylist();
         playlistPage.deleteSelectedPlaylist();
         //waitCommand();
-        //basePage.assertSuccessBanner();
+        basePage.assertSuccessBanner();
     }
 }

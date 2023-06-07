@@ -27,6 +27,7 @@ public class Homework20 extends BaseTest {
 
         loginPage.login("stella_26021987@mail.ru", "te$t$tudent");
         playlistPage.clickPlusBtn();
+        Thread.sleep(1000);
         playlistPage.clickNewPlaylist();
         playlistPage.addPlaylistName(newPlaylist);
         playlistPage.clickEnter();
@@ -35,7 +36,7 @@ public class Homework20 extends BaseTest {
         playlistPage.clickDeletePlaylistBtn();
         BasePage.assertSuccessBanner();
         basePage.refreshPage();
-        Thread.sleep(4000);
+        Thread.sleep(1000);
         playlistPage.assertPlaylistDeleted(newPlaylist);
     }
 }
