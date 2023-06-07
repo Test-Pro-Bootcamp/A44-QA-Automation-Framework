@@ -1,18 +1,15 @@
 import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
@@ -28,28 +25,26 @@ public class BaseTest {
     public static String url = "https://bbb.testpro.io/";
     public static WebDriverWait wait = null;
 
+    // for parallel execution
+    private static final ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
+    // THREAD_LOCAL of type ThreadLocal<WebDriver>. ThreadLocal is a mechanism that allows
+    // storing and retrieving unique variable values for each thread. In this case,
+    // ThreadLocal<WebDriver> will be used to store an instance of WebDriver
+    // associated with each thread during test execution.
 
-
-//    @BeforeSuite
-//    static void setupDriver() {
-//        WebDriverManager.safaridriver().setup();
-//    }
+    public static WebDriver getDriver() {
+        return THREAD_LOCAL.get();
+    }
 
     @BeforeMethod
-//    @Parameters({"BaseURL"})
-  //  public void setUpBrowser(String BaseURL){
-        public void setUpBrowser() throws MalformedURLException {
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--remote-allow-origins=*");
-//        options.addArguments("--disable-notifications");
-//        options.addArguments("--start-maximized");
+    @Parameters({"baseURL"})
+    public void setUpBrowser(@Optional String baseURL) throws MalformedURLException {
+        THREAD_LOCAL.set(pickBrowser(System.getProperty("browser")));
+        THREAD_LOCAL.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        getDriver().get(url);
+        System.out.println(
+                "Browser setup by Thread " + Thread.currentThread().getId() + " and Driver reference is : " + getDriver());
 
-       // driver = new ChromeDriver(options);
-        driver = pickBrowser(System.getProperty("browser"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
-        openUrl(url);
     }
 
     private WebDriver pickBrowser(String browser) throws MalformedURLException {
@@ -83,7 +78,8 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(){
-        driver.quit();
+        THREAD_LOCAL.get().close();
+        THREAD_LOCAL.remove();
     }
 
     public String generateRandomName(){
@@ -91,13 +87,6 @@ public class BaseTest {
         String newName = faker.name().firstName();
         return newName;
     }
-
-
-
-    public void openUrl(String url) {
-        driver.get(url);
-    }
-
 
 
     public void clickAddToPlaylistBtn() {
@@ -123,5 +112,6 @@ public class BaseTest {
                 {"", ""},
         };
     }
+
 
 }
