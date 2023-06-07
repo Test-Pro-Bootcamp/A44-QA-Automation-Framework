@@ -15,6 +15,7 @@ public class LoginPage extends BasePage {
     By emailfield = By.cssSelector("[type='email']");
     By passwordfield = By.cssSelector("[type='password']");
     By submitLoginBtn = By.cssSelector("button[type='submit']");
+    By logOutBtn = By.cssSelector("[data-testid='btn-logout']");
 
     public void clickLoginBtn() {
         WebElement submitLogin = wait.until(ExpectedConditions.elementToBeClickable(submitLoginBtn));
@@ -37,6 +38,10 @@ public class LoginPage extends BasePage {
         enterEmail(email);
         enterPassword(password);
         clickLoginBtn();
+    }
+    public void logOut() {
+        WebElement logoutBtn = wait.until(ExpectedConditions.elementToBeClickable(logOutBtn));
+        logoutBtn.click();
     }
     public boolean submitLogin(){
         return driver.findElement(submitLoginBtn).isDisplayed();
