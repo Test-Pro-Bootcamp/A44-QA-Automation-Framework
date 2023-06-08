@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class Homework19 extends BaseTest{
     @Test
-    public void deletePlaylist() throws InterruptedException {
+    public void deleteCurrentPlaylist() throws InterruptedException {
 
         LoginPage loginPage = new LoginPage(getThreadLocal());
         PlaylistPage playlistPage = new PlaylistPage(getThreadLocal());

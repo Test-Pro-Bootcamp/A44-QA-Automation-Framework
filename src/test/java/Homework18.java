@@ -8,11 +8,12 @@ import org.testng.annotations.Test;
 public class Homework18 extends BaseTest {
 
     @Test
-    public void playSong() {
+    public void playSong() throws InterruptedException {
         LoginPage loginPage = new LoginPage(getThreadLocal());
         HomePage homePage = new HomePage(getThreadLocal());
 
         loginPage.login("stella_26021987@mail.ru", "te$t$tudent");
+        //Thread.sleep(1000);
         homePage.clickPlayBtn();
         homePage.assertPauseBtn();
     }

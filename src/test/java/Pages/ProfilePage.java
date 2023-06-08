@@ -5,7 +5,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 
 import java.util.List;
 import java.util.Random;
@@ -19,17 +18,22 @@ public class ProfilePage extends BasePage{
     By listOfThemes = By.cssSelector(".themes li");
     By themeColor = By.cssSelector("[class='theme selected']");
 
-    public void assertThemeChanged() {
+    public String assertThemeChanged() {
         WebElement selectedTheme = wait.until(ExpectedConditions.presenceOfElementLocated(themeColor));
-        Assert.assertTrue(selectedTheme.isEnabled());
-        System.out.println("The selected theme is " + selectedTheme.getText());
+        //System.out.println("The name of the selected theme is " + selectedTheme.getText());
+        String newTheme = selectedTheme.getText();
+        return newTheme;
+        //Assert.assertEquals(newTheme, selectedTheme.getText());
+        //System.out.println("The selected theme is " + selectedTheme.getText());
     }
 
-    public void clickRandomTheme() {
+    public String clickRandomTheme() {
         List<WebElement> themes = driver.findElements(listOfThemes);
         Random random = new Random();
         int randomValue = random.nextInt(themes.size());
+        String theme = themes.get(randomValue).getText();
         themes.get(randomValue).click();
+        return theme;
     }
 
     public boolean isProfilePageOpen() {

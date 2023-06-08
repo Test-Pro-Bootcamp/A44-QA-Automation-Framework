@@ -11,6 +11,7 @@ public class Homework21 extends BaseTest{
         String newPlaylist = playlistPage.generateRandomName();
 
         loginPage.login("stella_26021987@mail.ru", "te$t$tudent");
+        Thread.sleep(1000);
         playlistPage.clickPlusBtn();
         Thread.sleep(1000);
         playlistPage.clickNewPlaylist();

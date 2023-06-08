@@ -22,7 +22,7 @@ public class Practice extends BaseTest {
         profilePage.clickAvatar();
         profilePage.isProfilePageOpen();
         profilePage.clickRandomTheme();
-        profilePage.assertThemeChanged();
+        Assert.assertEquals(profilePage.clickRandomTheme(), profilePage.assertThemeChanged());
     }
     @Test
 

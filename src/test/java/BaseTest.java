@@ -26,7 +26,7 @@ import java.util.List;
 public class BaseTest {
     private static final ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
     public static WebDriver driver=null;
-    public static String url="https://bbb.testpro.io/";
+    public static String url="https://qa.koel.app/";
     public static WebDriverWait wait=null;
 
     //@BeforeSuite
@@ -120,7 +120,8 @@ public class BaseTest {
             if (playlistName.equals("Renamed playlist attempt # 2")) {
                 listOfNames.add(playlistName);
             }
-            System.out.println(listOfNames);
+
         }
+        System.out.println(listOfNames);
     }
 }

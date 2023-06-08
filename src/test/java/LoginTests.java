@@ -37,7 +37,7 @@ public class LoginTests extends BaseTest {
         LoginPage loginPage = new LoginPage(getThreadLocal());
         HomePage homePage = new HomePage(getThreadLocal());
 
-        loginPage.enterEmail("demo@class.com");
+        loginPage.enterEmail("stella_26021987@mail.ru");
         loginPage.enterPassword("te$t$tudent");
         loginPage.clickLoginBtn();
         // find if avatar exists
