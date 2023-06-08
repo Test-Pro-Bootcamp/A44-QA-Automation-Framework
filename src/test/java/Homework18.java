@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 public class Homework18 extends BaseTest {
 
     @Test
-
     public void playSong() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
         HomePage homePage = new HomePage(getThreadLocal());
@@ -18,7 +17,6 @@ public class Homework18 extends BaseTest {
         homePage.assertPauseBtn();
     }
     @Test
-
     public void addSongWhileSearching(){
         LoginPage loginPage = new LoginPage(getThreadLocal());
         HomePage homePage = new HomePage(getThreadLocal());

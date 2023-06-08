@@ -37,7 +37,7 @@ public class BaseTest {
     }
     @BeforeMethod
     //@Parameters({"BaseURL"})
-    public void setUpBrowser(String BaseURL) throws MalformedURLException {
+    public void setUpBrowser() throws MalformedURLException {
         //ChromeOptions options = new ChromeOptions();
         //options.addArguments("--remote-allow-origins=*");
         //options.addArguments("--disable-notifications");
