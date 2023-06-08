@@ -10,8 +10,8 @@ public class Homework18 extends BaseTest {
     @Test
 
     public void playSong() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        HomePage homePage = new HomePage(getThreadLocal());
 
         loginPage.login("stella_26021987@mail.ru", "te$t$tudent");
         homePage.clickPlayBtn();
@@ -20,9 +20,9 @@ public class Homework18 extends BaseTest {
     @Test
 
     public void addSongWhileSearching(){
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        PlaylistPage playlistPage = new PlaylistPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        HomePage homePage = new HomePage(getThreadLocal());
+        PlaylistPage playlistPage = new PlaylistPage(getThreadLocal());
         String newPlaylist = playlistPage.generateRandomName();
 
         loginPage.login("stella_26021987@mail.ru", "te$t$tudent");

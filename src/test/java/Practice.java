@@ -15,8 +15,8 @@ public class Practice extends BaseTest {
     @Test
 
     public void changeTheme(){
-        LoginPage loginPage = new LoginPage(driver);
-        ProfilePage profilePage = new ProfilePage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        ProfilePage profilePage = new ProfilePage(getThreadLocal());
 
         loginPage.login("stella_26021987@mail.ru", "te$t$tudent");
         profilePage.clickAvatar();
@@ -27,8 +27,8 @@ public class Practice extends BaseTest {
     @Test
 
     public void likeSong() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(driver);
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
 
         loginPage.login("stella_26021987@mail.ru", "te$t$tudent");
         allSongsPage.clickAllSongs();
@@ -40,8 +40,8 @@ public class Practice extends BaseTest {
     @Test
 
     public void unlikeSong() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(driver);
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
 
         loginPage.login("stella_26021987@mail.ru", "te$t$tudent");
         allSongsPage.clickAllSongs();
@@ -53,7 +53,7 @@ public class Practice extends BaseTest {
     @Test
 
     public void logout() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
 
         loginPage.login("stella_26021987@mail.ru", "te$t$tudent");
         loginPage.logOut();

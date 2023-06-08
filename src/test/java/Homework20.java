@@ -20,9 +20,9 @@ public class Homework20 extends BaseTest {
     @Test
 
     public void deletePlaylist() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(driver);
-        PlaylistPage playlistPage = new PlaylistPage(driver);
-        BasePage basePage = new BasePage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        PlaylistPage playlistPage = new PlaylistPage(getThreadLocal());
+        BasePage basePage = new BasePage(getThreadLocal());
         String newPlaylist = playlistPage.generateRandomName();
 
         loginPage.login("stella_26021987@mail.ru", "te$t$tudent");
