@@ -18,6 +18,10 @@
             <class name="Homework21"/>
             <class name="Homework22"/>
             <class name="Homework23"/>
+            <class name="LoginTest"/>
+            <class name="PlaylistTest"/>
+            <class name="ProfileTest"/>
+            <class name="SongsTest"/>
         </classes>
     </test>
 </suite>
