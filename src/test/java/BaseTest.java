@@ -41,6 +41,11 @@ public class BaseTest {
     }
 
     @AfterMethod(alwaysRun = true)
+    public void tearDown(){
+        THREAD_LOCAL.get().close();
+        THREAD_LOCAL.remove();
+    }
+
     
 
     public String generateRandomName(){
