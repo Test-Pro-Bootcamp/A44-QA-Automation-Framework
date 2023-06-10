@@ -1,7 +1,5 @@
-import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,11 +7,14 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.*;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+
 
 import java.time.Duration;
-import java.util.List;
-import java.util.Locale;
+
 
 public class BaseTest {
     public static WebDriver driver = null;
@@ -30,8 +31,8 @@ public class BaseTest {
 
     @BeforeMethod
 //    @Parameters({"BaseURL"})
-  //  public void setUpBrowser(String BaseURL){
-        public void setUpBrowser(){
+    //  public void setUpBrowser(String BaseURL){
+    public void setUpBrowser(){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
@@ -49,42 +50,37 @@ public class BaseTest {
         driver.quit();
     }
 
-    public String generateRandomName(){
-        Faker faker = new Faker(new Locale("en-US"));
-        String newName = faker.name().firstName();
-        return newName;
-    }
-
-
 
     public void openUrl(String url) {
         driver.get(url);
     }
+    public void enterEmail(String email) {
+        // WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
+        WebElement emailInput = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='email']")));
+        emailInput.click();
+        emailInput.clear();
+        emailInput.sendKeys(email);
 
-
-
-    public void clickAddToPlaylistBtn() {
-        WebElement addToBtn = driver.findElement(By.cssSelector("[data-test='add-to-btn']"));
-        addToBtn.click();
     }
-
-    public void clickFirstSearchResultSong() {
-        List<WebElement> songsInResults = driver.findElements(By.cssSelector(".search-results .song-item .title"));
-        songsInResults.get(0).click();
+    public void enterPassword(String password) {
+        // WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
+        WebElement passwordInput = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='password']")));
+        passwordInput.click();
+        passwordInput.clear();
+        passwordInput.sendKeys(password);
     }
-
-    public void clickViewAllBtn() {
-        WebElement viewAllBtn = driver.findElement(By.xpath("//button[@data-test='view-all-songs-btn']"));
-        viewAllBtn.click();
+    public void clickLoginBtn() {
+        //  WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
+        WebElement submitLogin = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
+        submitLogin.click();
+        // WebElement avatar = driver.findElement(By.cssSelector(".avatar"));
+        WebElement avatar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".avatar")));
+        Assert.assertTrue(avatar.isDisplayed());
     }
-
-    @DataProvider(name="IncorrectLoginProviders")
-    public static Object[][] getDataFromDataProviders(){
-        return new Object[][]{
-                {"notExisting@email.com", "NotExistingPassword"},
-                {"demo@class.com", ""},
-                {"", ""},
-        };
+    public void login(String email, String password){
+        enterEmail(email);
+        enterPassword(password);
+        clickLoginBtn();
     }
 
 }

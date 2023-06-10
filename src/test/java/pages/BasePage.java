@@ -12,18 +12,16 @@ import java.time.Duration;
 
 public class BasePage {
 
-    protected WebDriver driver;
-    protected WebDriverWait wait;
-    protected Actions actions;
+    WebDriver driver;
+    WebDriverWait wait;
+    Actions actions;
 
-    By successBanner = By.cssSelector(".success");
-
-public BasePage( WebDriver givenDriver ){
-    driver = givenDriver;
-    wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-    actions = new Actions(driver);
-    PageFactory.initElements(driver, this);
-}
+    public BasePage( WebDriver givenDriver ){
+        driver = givenDriver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        actions = new Actions(driver);
+        PageFactory.initElements(driver,this);
+    }
 
     public WebElement waitUntilVisible(By element){
         return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.visibilityOfElementLocated(element));
@@ -32,14 +30,4 @@ public BasePage( WebDriver givenDriver ){
     public WebElement waitUntilClickable(By element){
         return new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.elementToBeClickable(element));
     }
-
-    public boolean isSuccessBannerDisplayed(){
-        return driver.findElement(successBanner).isDisplayed();
-    }
-
-    public void refreshPage(){
-        driver.navigate().refresh();
-    }
-
-
 }

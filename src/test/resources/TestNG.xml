@@ -5,12 +5,9 @@
 <!--    <parameter name="BaseURL" value="https://bbb.testpro.io/"></parameter>-->
     <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="LoginTests"/>
-            <class name="ProfileTests"/>
-            <class name="SongsTests"/>
-            <class name="CSVDataProviderTest"/>
-            <class name="PlaylistTests"/>
-            <class name="ActionsTests"/>
+
+            <class name="Homework23Test"/>
+
         </classes>
     </test>
 </suite>
