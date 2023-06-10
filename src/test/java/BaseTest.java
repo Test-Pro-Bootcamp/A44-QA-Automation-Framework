@@ -9,6 +9,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 
+import java.net.MalformedURLException;
+import java.time.Duration;
 import java.util.List;
 import java.util.Locale;
 
@@ -29,13 +31,17 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    
+    public void setUpBrowser() throws MalformedURLException {
+        THREAD_LOCAL.set(pickBrowser(System.getProperty("browser")));
+        THREAD_LOCAL.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        getThreadLocal().get(url);
+        System.out.println(
+                "Browser setup by Thread " + Thread.currentThread().getId() + " and Driver reference is : " + getThreadLocal());
+
+    }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown(){
-
-        driver.quit();
-    }
+    
 
     public String generateRandomName(){
         Faker faker = new Faker(new Locale("en-US"));
