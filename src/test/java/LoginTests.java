@@ -1,12 +1,7 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
-
-import java.util.List;
 
 
 public class LoginTests extends BaseTest {
@@ -28,7 +23,7 @@ public class LoginTests extends BaseTest {
         loginPage.enterEmail("demo@class.com");
         loginPage.enterPassword("te$t$tudent");
         loginPage.clickLoginBtn();
-        Thread.sleep(3000);
+        Thread.sleep(6000);
         Assert.assertTrue(homePage.getAvatar());
     }
 
