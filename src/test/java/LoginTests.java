@@ -23,7 +23,8 @@ public class LoginTests extends BaseTest {
         loginPage.enterEmail("demo@class.com");
         loginPage.enterPassword("te$t$tudent");
         loginPage.clickLoginBtn();
-        Thread.sleep(6000);
+        //wait.until(ExpectedConditions.visibilityOf())
+        //Thread.sleep(6000);
         Assert.assertTrue(homePage.getAvatar());
     }
 

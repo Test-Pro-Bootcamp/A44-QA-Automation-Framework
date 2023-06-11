@@ -27,7 +27,7 @@ public class BaseTest {
         private static final ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
     public static WebDriver driver = null;
     public static String url = "https://qa.koel.app/";
-    public static WebDriverWait wait = null;
+    public static WebDriverWait wait=null;
     public static WebDriver getThreadLocal() {
         return THREAD_LOCAL.get();
     }
