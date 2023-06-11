@@ -7,14 +7,14 @@ import pages.LoginPage;
 public class ProfileTests extends BaseTest {
 
     @Test(groups = "ProfileTests")
-    public void changeProfileName() {
+    public void changeProfileName()  {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("demo@class.com","te$t$tudent");
+        loginPage.login("demo@class.com", "te$t$tudent");
         // open profile
         WebElement avatar = driver.findElement(By.cssSelector(".avatar"));
         avatar.click();
         // type password
-        WebElement currentPasswordInput = driver.findElement(By.id("inputProfileCurrentPassword"));
+        WebElement currentPasswordInput = driver.findElement(By.cssSelector("[id='inputProfileCurrentPassword']"));
         currentPasswordInput.click();
         currentPasswordInput.clear();
         currentPasswordInput.sendKeys("te$t$tudent");
