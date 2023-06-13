@@ -6,12 +6,13 @@
 
     <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="LoginTests"/>
-            <class name="Homework21"/>
-            <class name="Homework19"/>
-            <class name="Homework20"/>
-            <class name="Homework18"/>
-            <class name="Practice"/>
-            </classes>
-    </test>
-</suite>
+            <!--  <class name="LoginTests"/>
+             <class name="Homework21"/>
+             <class name="Homework19"/>
+             <class name="Homework20"/>
+             <class name="Homework18"/>
+             <class name="Practice"/> -->
+             <class name="CucumberRunner"/>
+             </classes>
+     </test>
+ </suite>
