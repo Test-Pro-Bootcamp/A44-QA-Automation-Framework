@@ -16,7 +16,6 @@ import org.testng.annotations.Test;
         loginPage.enterEmail("andrei.bryliakov01@testpro.io")
                 .enterPassword("te$t$tudent")
                 .clickLoginBtn();
-
         // THEN
         Assert.assertTrue(loginPage.getSubmitLoginBtn());
 
