@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
+<<<<<<< Updated upstream
 <suite name="TestNG">
 <!--    <parameter name="BaseURL" value="https://bbb.testpro.io/"></parameter>-->
     <test name="Example Test" preserve-order="false">
@@ -12,6 +13,18 @@
             <class name="PlaylistTests"/>
             <class name="ActionsTests"/>
             <class name="CucumberRunner"/>
+=======
+<suite name="TestNG" parallel="methods" thread-count="2">
+    <!--    <parameter name="BaseURL" value="https://bbb.testpro.io/"></parameter>-->
+    <test name="Example Test" preserve-order="false">
+        <classes>
+            <class name="LoginTests"/>
+            <class name="BaseTest"/>
+
+
+
+
+>>>>>>> Stashed changes
         </classes>
     </test>
 </suite>
