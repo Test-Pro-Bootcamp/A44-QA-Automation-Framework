@@ -5,6 +5,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
@@ -19,7 +20,9 @@ public class SongsPage extends BasePage {
     By pauseBtn = By.cssSelector("[data-testid='pause-btn']");
     By equalizer = By.cssSelector("[alt='Sound bars']");
 
-    By playPauseButton = By.cssSelector("[title='Play or resume']");
+    @FindBy (css = "[title='Play or resume']")
+    WebElement playPauseButton;
+
 
 
     public boolean isPauseBtnDisplayed() {
@@ -27,7 +30,7 @@ public class SongsPage extends BasePage {
     }
 
     public boolean isPlayBtnDisplayed() {
-        return driver.findElement(playPauseButton).isDisplayed();
+        return driver.findElement((By) playPauseButton).isDisplayed();
     }
 
     public boolean isEqualizerDisplayed() {
@@ -35,8 +38,11 @@ public class SongsPage extends BasePage {
     }
 
     public void startPlaySong() {
-        WebElement buttonPlayOrResume = waitUntilVisible(playPauseButton);
-        buttonPlayOrResume.click();
+        new Actions(driver)
+                .moveToElement(playPauseButton)
+                .perform();
+        playPauseButton.click();
+
 
     }
 
