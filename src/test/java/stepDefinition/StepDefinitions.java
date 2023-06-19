@@ -94,4 +94,10 @@ public class StepDefinitions {
         SongsPage songsPage = new SongsPage(driver);
         Assert.assertTrue(songsPage.isEqualizerDisplayed());
     }
+
+    @And("I enter wrong password")
+    public void iEnterWrongPassword() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterPassword("te$t$tuden");
+    }
 }
