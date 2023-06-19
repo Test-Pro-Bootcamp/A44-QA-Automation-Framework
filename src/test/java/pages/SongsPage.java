@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class SongsPage extends BasePage {
 
@@ -35,6 +36,18 @@ public class SongsPage extends BasePage {
 
     public boolean isEqualizerDisplayed() {
         return driver.findElement(equalizer).isDisplayed();
+    }
+
+    public boolean isEqualizerNotDisplayed() {
+        try {
+           driver.findElement(equalizer);
+           return false;
+        } catch (NoSuchElementException e) {
+            return true;
+        }
+
+
+
     }
 
     public void startPlaySong() {

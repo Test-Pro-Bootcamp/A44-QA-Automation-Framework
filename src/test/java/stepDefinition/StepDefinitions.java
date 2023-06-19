@@ -110,6 +110,6 @@ public class StepDefinitions {
     @Then("I see equalizer has been disappeared")
     public void iSeeEqualizerHasBeenDisappeared() {
         SongsPage songsPage = new SongsPage(driver);
-        Assert.assertFalse(songsPage.isEqualizerDisplayed());
+        Assert.assertTrue(songsPage.isEqualizerNotDisplayed());
     }
 }
