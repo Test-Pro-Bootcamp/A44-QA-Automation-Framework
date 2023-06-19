@@ -10,27 +10,36 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.SongsPage;
 
-import java.net.MalformedURLException;
-import java.net.URI;
 import java.time.Duration;
 
 public class StepDefinitions {
 
+    WebDriver driver;
+    WebDriverWait wait;
 
+    @Before
+    public void openBrowser() {
+        WebDriverManager.chromedriver().setup();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-notifications");
+        options.addArguments("--start-maximized");
 
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    }
 
-
-
+    @After
+    public void closeBrowser() {
+        driver.quit();
+    }
 
 
     @Given("I open Login Page")
@@ -61,6 +70,8 @@ public class StepDefinitions {
         HomePage homePage = new HomePage(driver);
         Assert.assertTrue(homePage.getAvatar());
     }
+
+    
 
     @And("I click play button")
     public void clickPlayBtn(){
