@@ -71,7 +71,17 @@ public class StepDefinitions {
         Assert.assertTrue(homePage.getAvatar());
     }
 
-    
+    @When("I enter wrong email")
+    public void iEnterWrongEmail() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterEmail("demo@class.co");
+    }
+
+    @Then("I am not logged in")
+    public void iAmNotLoggedIn() {
+        LoginPage loginPage = new LoginPage(driver);
+        Assert.assertTrue(loginPage.isSubmitLoginBtnDisplayed());
+    }
 
     @And("I click play button")
     public void clickPlayBtn(){
