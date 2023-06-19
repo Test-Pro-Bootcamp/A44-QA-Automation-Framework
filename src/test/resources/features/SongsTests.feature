@@ -15,4 +15,4 @@ Feature: Songs Tests
       And I click submit
       And I click play button
       And I click pause button
-      Then I see 
+      Then I see equalizer has been disappeared

@@ -5,7 +5,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
@@ -20,23 +19,30 @@ public class SongsPage extends BasePage {
     By pauseBtn = By.cssSelector("[data-testid='pause-btn']");
     By equalizer = By.cssSelector("[alt='Sound bars']");
 
-    @FindBy(css = "[title='Play or resume']")
-    WebElement playPauseButton;
+    By playPauseButton = By.cssSelector("[title='Play or resume']");
 
-    public boolean isPauseBtnDisplayed(){
+
+    public boolean isPauseBtnDisplayed() {
         return driver.findElement(pauseBtn).isDisplayed();
     }
 
-    public boolean isEqualizerDisplayed(){
+    public boolean isPlayBtnDisplayed() {
+        return driver.findElement(playPauseButton).isDisplayed();
+    }
+
+    public boolean isEqualizerDisplayed() {
         return driver.findElement(equalizer).isDisplayed();
     }
 
     public void startPlaySong() {
-       // WebElement buttonPlayOrResume = driver.findElement(By.cssSelector("[title='Play or resume']"));
-        new Actions(driver)
-                .moveToElement(playPauseButton)
-                .perform();
-        playPauseButton.click();
+        WebElement buttonPlayOrResume = waitUntilVisible(playPauseButton);
+        buttonPlayOrResume.click();
+
+    }
+
+    public void clickPauseBtn() {
+        WebElement buttonPause = waitUntilVisible(pauseBtn);
+        buttonPause.click();
     }
 
     public void searchForSong(String text) {
@@ -46,7 +52,7 @@ public class SongsPage extends BasePage {
         searchInput.sendKeys(text);
     }
 
-    public String getSongName(){
+    public String getSongName() {
         WebElement songName = driver.findElement(By.cssSelector("#playlistWrapper .song-item .title"));
         String songText = songName.getText();
         return songText;

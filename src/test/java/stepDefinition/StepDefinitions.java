@@ -100,4 +100,16 @@ public class StepDefinitions {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.enterPassword("te$t$tuden");
     }
+
+    @And("I click pause button")
+    public void iClickPauseButton() {
+        SongsPage songsPage = new SongsPage(driver);
+        songsPage.clickPauseBtn();
+    }
+
+    @Then("I see equalizer has been disappeared")
+    public void iSeeEqualizerHasBeenDisappeared() {
+        SongsPage songsPage = new SongsPage(driver);
+        Assert.assertFalse(songsPage.isEqualizerDisplayed());
+    }
 }
