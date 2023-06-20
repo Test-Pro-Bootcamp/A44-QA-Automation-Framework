@@ -39,8 +39,8 @@ public class SongsPage extends BasePage {
 
     public boolean isEqualizerNotDisplayed() {
         try {
-           driver.findElement(equalizer);
-           return false;
+            driver.findElement(equalizer);
+            return false;
         } catch (NoSuchElementException e) {
             return true;
         }
