@@ -5,4 +5,18 @@ Feature: Login Tests
     When I enter email
     And I enter password
     And I click submit
-    Then I logged in
+    Then I am logged in
+
+  Scenario: LoginWrongEmail
+    Given I open Login Page
+    When I enter wrong email
+    And I enter password
+    And I click submit
+    Then I am not logged in
+
+    Scenario: LoginWrongPassword
+      Given I open Login Page
+      When I enter email
+      And I enter wrong password
+      And I click submit
+      Then I am not logged in
