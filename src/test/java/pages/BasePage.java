@@ -14,7 +14,7 @@ import java.util.Locale;
 
 public class BasePage {
 
-    protected WebDriver driver;
+    public WebDriver driver;
     protected WebDriverWait wait;
     protected Actions actions;
 
