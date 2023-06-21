@@ -89,8 +89,9 @@ public class StepDefinitions {
     }
 
     @Then("I see equalizer")
-    public void iSeeEqualizer() {
+    public void iSeeEqualizer() throws InterruptedException {
         SongsPage songsPage = new SongsPage(driver);
+        Thread.sleep(2000);
         Assert.assertTrue(songsPage.isEqualizerDisplayed());
     }
 
