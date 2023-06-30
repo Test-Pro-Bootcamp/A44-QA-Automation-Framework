@@ -23,12 +23,12 @@ public class LoginTests extends BaseTest {
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
-        String url = "https://bbb.testpro.io/";
+        String url = "https://qa.koel.app/";
         driver.get(url);
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
         emailInput.click();
         emailInput.clear();
-        emailInput.sendKeys("demo@class.com");
+        emailInput.sendKeys("grigore.crepciuc@testpro.io");
         WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
         passwordInput.click();
         passwordInput.clear();
@@ -52,12 +52,12 @@ public class LoginTests extends BaseTest {
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
-        String url = "https://bbb.testpro.io/";
+        String url = "https://qa.koel.app/";
         driver.get(url);
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
         emailInput.click();
         emailInput.clear();
-        emailInput.sendKeys("demo@class.com");
+        emailInput.sendKeys("grigore.crepciuc@testpro.io");
 
         WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
         submitLogin.click();
@@ -75,7 +75,7 @@ public class LoginTests extends BaseTest {
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
-        String url = "https://bbb.testpro.io/";
+        String url = "https://qa.koel.app/";
         driver.get(url);
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
         emailInput.click();
