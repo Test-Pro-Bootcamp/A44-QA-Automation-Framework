@@ -6,38 +6,22 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import pages.LoginPage;
 
 import java.util.List;
 
 public class Homework21 extends BaseTest {
     @Test
     public void renamePlaylist() {
+        LoginPage loginPage = new LoginPage(driver);
         // double click
-        String playlistName = "Happy Days";
+        String playlistName = "Summer songs";
 
-        login("grigore.crepciuc@testpro.io", "te$t$tudent");
+        loginPage.login("demo@class.com", "te$t$tudent");
         doubleClickChoosePlaylist();
         enterPlaylistName(playlistName);
         String newName = getPlaylistName();
         Assert.assertEquals(playlistName, newName, "=== PlaylistNames expected to be equals ===");
     }
-    public void doubleClickChoosePlaylist() {
-        WebElement playlistElement = wait.until(ExpectedConditions.
-                elementToBeClickable(By.cssSelector(".playlist:nth-child(3)")));
-        Actions actions = new Actions(driver);
-        actions.doubleClick(playlistElement).perform();
-    }
 
-    public void enterPlaylistName(String name) {
-        WebElement playlistInputField = driver.findElement(By.cssSelector("input[name='name']"));
-        playlistInputField.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), name);
-        playlistInputField.sendKeys(Keys.ENTER);
-    }
-
-    private String getPlaylistName() {
-        WebElement playlistElement = wait.until(ExpectedConditions.
-                visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)>a")));
-        String name = playlistElement.getText();
-        return name;
-    }
 }
