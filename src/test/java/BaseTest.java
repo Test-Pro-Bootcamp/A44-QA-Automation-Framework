@@ -6,11 +6,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.time.Duration;
 import java.util.List;
 import java.util.Locale;
@@ -23,25 +29,53 @@ public class BaseTest {
 
 
 
-    @BeforeSuite
-    static void setupDriver() {
-        WebDriverManager.chromedriver().setup();
-    }
+   // @BeforeSuite
+   // static void setupDriver() {
+   //     WebDriverManager.safaridriver().setup();
+   // }
 
     @BeforeMethod
 //    @Parameters({"BaseURL"})
     //  public void setUpBrowser(String BaseURL){
-    public void setUpBrowser(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-notifications");
-        options.addArguments("--start-maximized");
+    public void setUpBrowser() throws MalformedURLException {
+      //  ChromeOptions options = new ChromeOptions();
+     //   options.addArguments("--remote-allow-origins=*");
+        //   options.addArguments("--disable-notifications");
+     //   options.addArguments("--start-maximized");
 
-        driver = new ChromeDriver(options);
+        //driver = new ChromeDriver(options);
+        //driver = new SafariDriver();
+        driver = pickBrowser(System.getProperty("browser"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         openUrl(url);
+    }
+
+    private WebDriver pickBrowser(String browser) throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        String gridURL = "http://192.168.1.193:4444/ui";
+        switch (browser) {
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                return driver = new FirefoxDriver();
+            case "safari":
+                WebDriverManager.safaridriver().setup();
+                return driver = new SafariDriver();
+            case "grid-firefox":
+                capabilities.setCapability("browserName", "firefox");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
+            case "grid-safari":
+                capabilities.setCapability("browserName", "safari");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
+            default:
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--remote-allow-origins=*");
+                options.addArguments("--disable-notifications");
+                options.addArguments("--start-maximized");
+                return driver = new ChromeDriver(options);
+        }
     }
 
     @AfterMethod(alwaysRun = true)
