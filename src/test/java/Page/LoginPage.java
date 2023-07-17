@@ -18,9 +18,9 @@ public class LoginPage extends BasePage {
 //    @FindBy(css ="[type='submit']")
 //    WebElement submitButtonLocator;
     @FindBy(css = "[type='email']")
-    private  WebElement emailInput;
+    public static   WebElement emailInput;
     @FindBy(css = "[type='password']")
-    private  WebElement  passwordInput;
+    public static   WebElement  passwordInput;
 
 //     public void clickSubBtn(){
 //         submitButtonLocator.click();
@@ -28,7 +28,7 @@ public class LoginPage extends BasePage {
 //      public void provideEmail(String email){
 //         emailField.sendKeys(email);
 //      }
-//      public void provedePassword(String password){
+//      public void providePassword(String password){
 //         passwordField.sendKeys(password);
 //      }
 //    static By emailField = By.cssSelector("[type='email']");

@@ -14,14 +14,10 @@ import java.time.Duration;
 
 //      Added ChromeOptions argument below to fix websocket error
 
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-notification*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
+//      WebDriver driver = new ChromeDriver(options);
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+//        String url = "https://bbb.testpro.io/";
+//        driver.get(url);
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
         emailInput.click();
         emailInput.clear();

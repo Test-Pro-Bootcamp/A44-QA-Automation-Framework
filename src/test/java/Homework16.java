@@ -12,13 +12,13 @@ public class Homework16 extends BaseTest {
     @Test
     public void registrationNavigation(){
 
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-notification*");
-
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--remote-allow-origins=*");
+//        options.addArguments("--disable-notification*");
+//
+//
+//        WebDriver driver = new ChromeDriver(options);
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 //        String url = "https://bbb.testpro.io/";
 //        driver.get(url);
 
