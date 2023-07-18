@@ -14,7 +14,7 @@ public class LoginTests extends BaseTest {
 
     @Test(dataProvider = "IncorrectLoginProviders")
     public void negativeLoginTests(String email, String password) {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.enterEmail(email);
         loginPage.enterPassword(password);
         loginPage.clickLoginBtn();
@@ -23,9 +23,9 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginSucceedTest() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        loginPage.enterEmail("demo@class.com");
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        HomePage homePage = new HomePage(getThreadLocal());
+        loginPage.enterEmail("grigore.crepciuc@testpro.io");
         loginPage.enterPassword("te$t$tudent");
         loginPage.clickLoginBtn();
         Thread.sleep(3000);
@@ -35,14 +35,14 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginEmptyPasswordTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("demo@class.com", "");
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        loginPage.login("grigore.crepciuc@testpro.io", "");
         Assert.assertTrue(loginPage.isSubmitLoginBtnDisplayed());
     }
 
     @Test
     public void loginInvalidEmailTest() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage
                 .enterEmail("notexists@class.com")
                 .enterPassword("te$t$tudent")

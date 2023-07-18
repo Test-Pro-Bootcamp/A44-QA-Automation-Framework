@@ -6,8 +6,8 @@ import pages.LoginPage;
 public class Homework23 extends BaseTest {
     @Test
     public void renamePlaylist() {
-        ActionsPage actionsPage =new ActionsPage(driver);
-        LoginPage loginPage = new LoginPage(driver);
+        ActionsPage actionsPage =new ActionsPage(getThreadLocal());
+        LoginPage loginPage = new LoginPage(getThreadLocal());
         String playlistName = "Happy Days";
         loginPage.login("grigore.crepciuc@testpro.io", "te$t$tudent");
         actionsPage. doubleClickChoosePlaylist().enterPlaylistName(playlistName);
